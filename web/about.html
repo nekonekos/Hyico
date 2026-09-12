@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>关于我们 · Hyico</title>
+<meta name="description" content="Hyico 是一支专注 H 型构架轻型运输无人机、科研探测载荷与远程运营平台的团队。我们怎么工作、在意什么、走到哪一步了。">
+<meta name="theme-color" content="#EBF1EF">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hyico.pages.dev/about.html">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hyico">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="关于我们 · Hyico">
+<meta property="og:description" content="一支专注 H 型构架飞行平台的团队。">
+<meta property="og:image" content="assets/img/og-default.svg">
+<meta property="og:url" content="https://hyico.pages.dev/about.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>
+(function () {
+  /* 标记 JS 可用：滚动进场动画仅在此时才隐藏元素，避免禁用 JS 后内容不可见 */
+  document.documentElement.classList.add('has-js');
+  try {
+    var saved = localStorage.getItem('hyico-theme');
+    var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var root = document.documentElement;
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    root.style.colorScheme = dark ? 'dark' : 'light';
+  } catch (e) {}
+})();
+</script>
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header" data-header>
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="Hyico 首页">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <rect x="6" y="6" width="20" height="20" rx="4"/>
+        <path d="M6 16h20"/>
+        <circle cx="6" cy="6" r="2.4"/><circle cx="26" cy="6" r="2.4"/>
+        <circle cx="6" cy="26" r="2.4"/><circle cx="26" cy="26" r="2.4"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__word">Hyico</span>
+        <span class="brand__sub" data-content="site.tagline">轻型运输无人机</span>
+      </span>
+    </a>
+
+    <nav class="nav" data-nav aria-label="主导航">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="index.html">首页</a></li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            产品与技术
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="products.html">产品总览<span class="nav__menu-desc">H 系列机型与载荷配置</span></a>
+            <a href="h770.html">HyicoFly-H770<span class="nav__menu-desc">770mm 轴距 · 1kg 载荷</span></a>
+            <a href="technology.html">H 型构架技术<span class="nav__menu-desc">结构、气动与可靠性</span></a>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            平台与地面站
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="platform.html">HyicoPlatform<span class="nav__menu-desc">远程监控与运营平台</span></a>
+            <a href="hgc.html">HyicoGroundControl<span class="nav__menu-desc">飞手优先的地面站</span></a>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            公司
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="about.html">关于我们<span class="nav__menu-desc">团队、理念与进展</span></a>
+            <a href="news.html">新闻动态</a>
+            <a href="careers.html">加入我们</a>
+          </div>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="faq.html">支持</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"/>
+        </svg>
+      </button>
+      <a class="btn btn--sm site-header__cta" href="contact.html">联系我们</a>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-drawer" aria-label="打开菜单">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="site-drawer" data-drawer hidden>
+  <nav class="drawer__nav" data-drawer-nav aria-label="移动端导航"></nav>
+  <div class="drawer__foot">
+    <a class="btn" href="contact.html">联系我们</a>
+    <span data-content="site.contactEmail">contact@hyico.com</span>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============================ 页面头 ============================ -->
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="crumbs" aria-label="面包屑">
+        <ol>
+          <li><a href="index.html">首页</a></li>
+          <li><span aria-current="page">关于我们</span></li>
+        </ol>
+      </nav>
+      <span class="eyebrow" data-content="page.eyebrow">关于我们</span>
+      <h1 data-content="page.title">把一件事做完整，比做很多件事更难</h1>
+      <p data-content="page.lede">Hyico 是一支不大的团队。我们同时做机体、飞控配置、地面站和云端平台，不是为了显得全面，而是因为这几件事本来就互相牵着——分开做，最后一定会在某个接缝处出问题。</p>
+    </div>
+  </section>
+
+  <!-- ============================ 立场 ============================ -->
+  <section class="section" aria-labelledby="stance-title">
+    <div class="wrap">
+      <div class="split">
+        <div class="stack" data-reveal>
+          <span class="eyebrow">立场</span>
+          <h2 id="stance-title" data-content="stance.title">我们更愿意从具体任务开始</h2>
+        </div>
+        <div class="stack" data-reveal style="color: var(--text-2)">
+          <p data-content="stance.body.0">无人机行业不缺参数漂亮的产品，缺的是「拿去做这件事，它能稳定完成」的确信。所以我们不太谈愿景，更愿意先问清楚：你要运的是什么，多重，多远，什么环境，谁来操作。</p>
+          <p data-content="stance.body.1">这也是我们只做 H 型构架的原因。把一个构型吃透，比铺开五条产品线更能解决问题。目前只有一款机型在售，它会被持续改进，而不是被下一代仓促替换。</p>
+          <p data-content="stance.body.2">我们公开的信息都经过确认。不确定的参数会明确标注「待确认」，而不是用估算值把表填满——这是我们对自己和对客户的基本诚实。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 时间线 ============================ -->
+  <section class="section section--sub section--ruled" aria-labelledby="timeline-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">进展</span>
+        <h2 id="timeline-title" data-content="timeline.title">走到哪一步了</h2>
+        <p data-content="timeline.lede">这是一个仍在早期阶段的项目。我们把节点公开出来，是为了让合作方对时间有准确的预期。</p>
+      </div>
+
+      <ol class="timeline" data-each="timeline.items" data-reveal>
+        <li class="timeline__item" data-template data-reveal>
+          <span class="timeline__date" data-content="date">2025-12</span>
+          <h3 class="timeline__title" data-content="title">项目启动</h3>
+          <p class="timeline__desc" data-content="desc">确定以 H 型构架作为统一的飞行平台语言，完成第一版构型方案。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================ 价值观 ============================ -->
+  <section class="section" aria-labelledby="values-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">工作方式</span>
+        <h2 id="values-title" data-content="values.title">我们在意的三件事</h2>
+      </div>
+
+      <div class="value-grid" data-reveal-stagger="80">
+        <div class="value-cell" data-reveal>
+          <span class="card__index">01</span>
+          <h3 data-content="values.items.0.title">先飞起来，再优化</h3>
+          <p data-content="values.items.0.desc">仿真和计算能排除明显错误，但只有真飞才知道气流、振动和链路到底怎么样。我们宁可早点上天，也不愿意在纸面上反复推演。</p>
+        </div>
+        <div class="value-cell" data-reveal>
+          <span class="card__index">02</span>
+          <h3 data-content="values.items.1.title">把话说清楚</h3>
+          <p data-content="values.items.1.desc">不管是内部评审还是对外沟通，参数、进度和风险都直接讲。含糊其辞只会把问题推到后面，代价更大。</p>
+        </div>
+        <div class="value-cell" data-reveal>
+          <span class="card__index">03</span>
+          <h3 data-content="values.items.2.title">做能被维修的东西</h3>
+          <p data-content="values.items.2.desc">一台要长期干活的飞机，必须能拆、能换、能修。我们在设计阶段就假设它会坏，而不是假设它不会坏。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 团队 ============================ -->
+  <section class="section surface-dark" aria-labelledby="team-title">
+    <div class="wrap">
+      <div class="section__split">
+        <div class="stack" data-reveal>
+          <span class="eyebrow">团队</span>
+          <h2 id="team-title" data-content="team.title">结构、电子、软件坐在同一张桌子前</h2>
+          <p data-content="team.lede" style="color: var(--text-2)">我们的团队同时覆盖机体结构、航电与链路、地面站与云端开发。一个人可能要写界面也要调参数，好处是没有人可以把手上的问题推给"下一个环节"。</p>
+        </div>
+
+        <div class="stack" data-reveal>
+          <div class="gc-feature">
+            <div class="gc-feature__item">
+              <span class="card__index">A</span>
+              <div>
+                <h3 data-content="team.items.0.title">结构与气动</h3>
+                <p data-content="team.items.0.desc">构型、材料、振动与气动效率。</p>
+              </div>
+            </div>
+            <div class="gc-feature__item">
+              <span class="card__index">B</span>
+              <div>
+                <h3 data-content="team.items.1.title">航电与链路</h3>
+                <p data-content="team.items.1.desc">飞控配置、光流定位、4G 数链与电源系统。</p>
+              </div>
+            </div>
+            <div class="gc-feature__item">
+              <span class="card__index">C</span>
+              <div>
+                <h3 data-content="team.items.2.title">软件与平台</h3>
+                <p data-content="team.items.2.desc">HGC 地面站、HyicoPlatform 与数据分析管道。</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <a class="btn" href="careers.html" data-content="team.cta">看看我们在招什么</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 办公地点 ============================ -->
+  <section class="section" aria-labelledby="office-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">地点</span>
+        <h2 id="office-title" data-content="office.title">在哪里</h2>
+      </div>
+
+      <div class="office-list" data-reveal>
+        <div class="office">
+          <h3 data-content="office.items.0.name">研发与测试基地</h3>
+          <p data-content="office.items.0.addr">详细地址待补充</p>
+          <p data-content="office.items.0.note">负责机体装配、飞控调试与试飞。</p>
+        </div>
+        <div class="office">
+          <h3 data-content="office.items.1.name">软件与平台团队</h3>
+          <p data-content="office.items.1.addr">详细地址待补充</p>
+          <p data-content="office.items.1.note">负责 HGC 与 HyicoPlatform 的研发。</p>
+        </div>
+      </div>
+
+      <div class="notice" style="margin-top: var(--s-8)" data-reveal>
+        <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="10" r="8"/><path d="M10 6.4v4.2M10 13.6v.1"/></svg>
+        <span data-content="office.note">办公地址与联系方式为占位内容，请以 site.json 中填写的正式信息为准。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section class="section section--sub section--ruled">
+    <div class="wrap">
+      <div class="split" style="align-items: center">
+        <div class="stack" data-reveal>
+          <h2 data-content="cta.title">想聊聊合作或者加入？</h2>
+          <p data-content="cta.desc" style="color: var(--text-2)">无论你是想用这套平台做具体任务，还是想一起来做这件事，我们都愿意先听你说。</p>
+        </div>
+        <div class="row" data-reveal>
+          <a class="btn btn--lg" href="contact.html" data-content="cta.primary">联系我们</a>
+          <a class="btn btn--lg btn--ghost" href="careers.html" data-content="cta.secondary">加入我们</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand" href="index.html" aria-label="Hyico 首页">
+          <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="6" y="6" width="20" height="20" rx="4"/>
+            <path d="M6 16h20"/>
+            <circle cx="6" cy="6" r="2.4"/><circle cx="26" cy="6" r="2.4"/>
+            <circle cx="6" cy="26" r="2.4"/><circle cx="26" cy="26" r="2.4"/>
+          </svg>
+          <span class="brand__text">
+            <span class="brand__word">Hyico</span>
+            <span class="brand__sub">轻量 · 可靠 · 可运营</span>
+          </span>
+        </a>
+        <p data-content="site.description">Hyico 专注于轻型运输无人机、科研探测载荷与远程运营平台的开发。以 H 型构架为统一的飞行平台语言。</p>
+        <span class="chip"><span class="chip__dot chip__dot--live"></span><span data-content="site.status">研发中 · 接受试点合作</span></span>
+      </div>
+
+      <div class="site-footer__cols">
+        <div class="site-footer__col">
+          <h3>产品</h3>
+          <ul>
+            <li><a href="products.html">产品总览</a></li>
+            <li><a href="h770.html">HyicoFly-H770</a></li>
+            <li><a href="technology.html">H 型构架技术</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>软件</h3>
+          <ul>
+            <li><a href="platform.html">HyicoPlatform</a></li>
+            <li><a href="hgc.html">HyicoGroundControl</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>公司</h3>
+          <ul>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="news.html">新闻动态</a></li>
+            <li><a href="careers.html">加入我们</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>支持</h3>
+          <ul>
+            <li><a href="faq.html">常见问题</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <span data-content="site.copyright">© 2026 Hyico. 保留所有权利。</span>
+      <div class="site-footer__legal">
+        <a href="contact.html">联系我们</a>
+        <a href="faq.html">常见问题</a>
+        <a href="careers.html">加入我们</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/core/dom.js"></script>
+<script src="assets/js/core/content.js"></script>
+<script src="assets/js/core/theme.js"></script>
+<script src="assets/js/core/nav.js"></script>
+<script src="assets/js/components/reveal.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

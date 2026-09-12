@@ -1,0 +1,20 @@
+{
+  "_readme": "全站共用信息。每个页面都会先加载本文件，再加载自己的同名 JSON（后者覆盖同名键）。改公司信息、联系方式、页脚，只需要动这里。",
+
+  "site": {
+    "name": "Hyico",
+    "tagline": "轻型运输无人机",
+    "description": "Hyico 专注于轻型运输无人机、科研探测载荷与远程运营平台的开发。以 H 型构架为统一的飞行平台语言。",
+    "status": "研发中 · 接受试点合作",
+    "contactEmail": "contact@hyico.com",
+    "businessEmail": "bd@hyico.com",
+    "careerEmail": "jobs@hyico.com",
+    "phone": "+86 000 0000 0000",
+    "address": "中国 · 详细地址待补充",
+    "copyright": "© 2026 Hyico. 保留所有权利。",
+    "_todo": [
+      "contactEmail / businessEmail / careerEmail / phone / address 全部为占位值，上线前请替换为真实信息",
+      "若域名不是 hyico.pages.dev，请同步更新各页面 <link rel=\"canonical\"> 与 og:url"
+    ]
+  }
+}

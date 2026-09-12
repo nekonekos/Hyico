@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# 详情页与 404 不需要被索引
+Disallow: /news-post.html
+Disallow: /careers-post.html
+Disallow: /404.html
+
+# TODO: 若正式域名不是 hyico.pages.dev，请替换下面的 Sitemap 地址
+Sitemap: https://hyico.pages.dev/sitemap.xml

@@ -1,0 +1,108 @@
+{
+  "_readme": "招聘数据源。careers.html（列表页）读这个文件；每个职位的详情在 careers/<slug>.json。",
+  "_fieldNotes": {
+    "slug": "唯一标识，必须与 careers/<slug>.json 的文件名一致",
+    "href": "列表项链接，按 careers-post.html?slug=<slug> 填写",
+    "team": "左侧显示的方向",
+    "tags": "用于列表页筛选，字符串数组",
+    "type": "全职 / 实习 / 兼职"
+  },
+  "_todo": [
+    "所有职位的 location（工作地点）为占位值，请替换为真实地点。"
+  ],
+
+  "page": {
+    "eyebrow": "加入我们",
+    "title": "做一台能真正干活的飞机",
+    "lede": "我们很小，所以每个人负责的东西都很具体。你会看到自己画的那根梁被装上去，也会看到自己写的那个界面被飞手在风里用。如果你受够了大公司里说不清归属的分工，这里可能更合适。",
+    "status": "4 个开放职位"
+  },
+
+  "why": {
+    "title": "这里的三件事",
+    "items": [
+      {
+        "title": "反馈很快",
+        "desc": "上午改的东西，下午可能就上天了。没有层层评审，也不用等一个季度才能看到结果。"
+      },
+      {
+        "title": "边界很宽",
+        "desc": "我们鼓励你伸手到隔壁领域。做结构的可以碰飞控参数，写后端的可以上机试飞——只要能把事做完。"
+      },
+      {
+        "title": "不吹参数",
+        "desc": "我们对外只写确认过的数据。这意味着你的工作成果不会被拿去粉饰，也不用替夸大的指标收拾残局。"
+      }
+    ]
+  },
+
+  "jobs": {
+    "title": "现在在招",
+    "lede": "没有找到合适的岗位也没关系。把你的作品和想做的事发过来，我们会认真看。"
+  },
+
+  "empty": {
+    "title": "这个方向暂时没有开放职位",
+    "desc": "但你可以直接发邮件自荐，我们一直愿意聊聊。"
+  },
+
+  "process": {
+    "title": "我们怎么招人",
+    "lede": "流程刻意做得短。我们不设置笔试环节，也不会让你做和实际工作无关的题目。",
+    "items": [
+      { "title": "发邮件", "desc": "把简历和一份你做过的东西发过来。作品比简历重要。" },
+      { "title": "聊一次", "desc": "一次一到两小时的技术交流，围绕你做过的项目展开，没有标准答案。" },
+      { "title": "看现场", "desc": "来一次我们的场地，看看真实的工作环境和在做的飞机。" },
+      { "title": "给答复", "desc": "无论结果如何，我们都会明确回复，不会让你一直等。" }
+    ]
+  },
+
+  "cta": {
+    "title": "直接发邮件就行",
+    "desc": "没有表单要填，也没有账号要注册。说明你想做什么，附上能证明你做过的东西即可。",
+    "primary": "发简历到 jobs@hyico.com"
+  },
+
+  "items": [
+    {
+      "slug": "uav-structure-engineer",
+      "team": "结构",
+      "type": "全职",
+      "location": "地点待补充",
+      "tags": ["结构"],
+      "title": "无人机结构工程师",
+      "excerpt": "负责 H 型机架的结构设计、复材铺层与连接件选型，参与从方案到试飞的全过程。",
+      "href": "careers-post.html?slug=uav-structure-engineer"
+    },
+    {
+      "slug": "flight-control-engineer",
+      "team": "飞控",
+      "type": "全职",
+      "location": "地点待补充",
+      "tags": ["飞控"],
+      "title": "飞控与航电工程师",
+      "excerpt": "负责飞控参数调校、光流定位与 4G 数链的集成与验证，直接参与外场试飞。",
+      "href": "careers-post.html?slug=flight-control-engineer"
+    },
+    {
+      "slug": "platform-software-engineer",
+      "team": "软件",
+      "type": "全职",
+      "location": "地点待补充",
+      "tags": ["软件"],
+      "title": "平台软件工程师（前端 / 全栈）",
+      "excerpt": "负责 HGC 地面站与 HyicoPlatform 的界面与数据链路开发，把飞行数据变成可读的东西。",
+      "href": "careers-post.html?slug=platform-software-engineer"
+    },
+    {
+      "slug": "flight-test-engineer",
+      "team": "测试",
+      "type": "全职",
+      "location": "地点待补充",
+      "tags": ["测试"],
+      "title": "试飞与测试工程师",
+      "excerpt": "负责试飞计划、数据采集与失效复现，把「感觉不太对」变成可复现的结论。",
+      "href": "careers-post.html?slug=flight-test-engineer"
+    }
+  ]
+}

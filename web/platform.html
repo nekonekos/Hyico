@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HyicoPlatform · 无人机远程监控与运营平台 · Hyico</title>
+<meta name="description" content="HyicoPlatform 把飞行日志、遥测与载荷数据接进大数据管道，并接入 DeepSeek 做语义层的检索与分析。远程监控、任务回放、异常归因，一个平台完成。">
+<meta name="theme-color" content="#EBF1EF">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hyico.pages.dev/platform.html">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hyico">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="HyicoPlatform · 无人机远程监控与运营平台">
+<meta property="og:description" content="大数据管道 + DeepSeek 语义分析，让每一次飞行可视、可控、可追溯。">
+<meta property="og:image" content="assets/img/og-default.svg">
+<meta property="og:url" content="https://hyico.pages.dev/platform.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>
+(function () {
+  /* 标记 JS 可用：滚动进场动画仅在此时才隐藏元素，避免禁用 JS 后内容不可见 */
+  document.documentElement.classList.add('has-js');
+  try {
+    var saved = localStorage.getItem('hyico-theme');
+    var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var root = document.documentElement;
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    root.style.colorScheme = dark ? 'dark' : 'light';
+  } catch (e) {}
+})();
+</script>
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header" data-header>
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="Hyico 首页">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <rect x="6" y="6" width="20" height="20" rx="4"/>
+        <path d="M6 16h20"/>
+        <circle cx="6" cy="6" r="2.4"/><circle cx="26" cy="6" r="2.4"/>
+        <circle cx="6" cy="26" r="2.4"/><circle cx="26" cy="26" r="2.4"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__word">Hyico</span>
+        <span class="brand__sub" data-content="site.tagline">轻型运输无人机</span>
+      </span>
+    </a>
+
+    <nav class="nav" data-nav aria-label="主导航">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="index.html">首页</a></li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            产品与技术
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="products.html">产品总览<span class="nav__menu-desc">H 系列机型与载荷配置</span></a>
+            <a href="h770.html">HyicoFly-H770<span class="nav__menu-desc">770mm 轴距 · 1kg 载荷</span></a>
+            <a href="technology.html">H 型构架技术<span class="nav__menu-desc">结构、气动与可靠性</span></a>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            平台与地面站
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="platform.html">HyicoPlatform<span class="nav__menu-desc">远程监控与运营平台</span></a>
+            <a href="hgc.html">HyicoGroundControl<span class="nav__menu-desc">飞手优先的地面站</span></a>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            公司
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="about.html">关于我们<span class="nav__menu-desc">团队、理念与进展</span></a>
+            <a href="news.html">新闻动态</a>
+            <a href="careers.html">加入我们</a>
+          </div>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="faq.html">支持</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"/>
+        </svg>
+      </button>
+      <a class="btn btn--sm site-header__cta" href="contact.html">联系我们</a>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-drawer" aria-label="打开菜单">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="site-drawer" data-drawer hidden>
+  <nav class="drawer__nav" data-drawer-nav aria-label="移动端导航"></nav>
+  <div class="drawer__foot">
+    <a class="btn" href="contact.html">联系我们</a>
+    <span data-content="site.contactEmail">contact@hyico.com</span>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============================ 页面头 ============================ -->
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="crumbs" aria-label="面包屑">
+        <ol>
+          <li><a href="index.html">首页</a></li>
+          <li><span aria-current="page">HyicoPlatform</span></li>
+        </ol>
+      </nav>
+      <span class="eyebrow" data-content="page.eyebrow">软件 · HyicoPlatform</span>
+      <h1 data-content="page.title">飞机落地之后，数据才开始工作</h1>
+      <p data-content="page.lede">HyicoPlatform 是 Hyico 的远程监控与运营平台。它接收飞行日志、遥测与载荷数据，把它们整理成可检索、可回放、可追问的形态，并接入大数据管道与 DeepSeek 做语义层分析。</p>
+      <div class="row">
+        <span class="chip chip--accent"><span class="chip__dot chip__dot--live"></span>持续迭代中</span>
+        <span class="chip">大数据管道</span>
+        <span class="chip">DeepSeek 分析</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 数据链路 ============================ -->
+  <section class="section" aria-labelledby="flow-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">数据链路</span>
+        <h2 id="flow-title" data-content="flow.title">从桨叶到结论，四步</h2>
+        <p data-content="flow.lede">每一步都有明确的边界与失败回退，任何一个环节断开都不会让整条链路失去意义。</p>
+      </div>
+
+      <ol class="flow" data-reveal-stagger="90">
+        <li class="flow__step" data-reveal>
+          <h3 data-content="flow.items.0.title">机载采集</h3>
+          <p data-content="flow.items.0.desc">飞控状态、位置、链路质量与载荷数据在机上按统一时基记录，落盘与上行各一份。</p>
+        </li>
+        <li class="flow__step" data-reveal>
+          <h3 data-content="flow.items.1.title">4G 数链上行</h3>
+          <p data-content="flow.items.1.desc">不依赖专网，遥测持续回传。网络中断时本地继续记录，恢复后自动补齐。</p>
+        </li>
+        <li class="flow__step" data-reveal>
+          <h3 data-content="flow.items.2.title">存储与计算</h3>
+          <p data-content="flow.items.2.desc">原始数据进大数据管道，按架次、任务与设备三个维度归档，支撑长期趋势统计。</p>
+        </li>
+        <li class="flow__step" data-reveal>
+          <h3 data-content="flow.items.3.title">分析与问答</h3>
+          <p data-content="flow.items.3.desc">超过阈值的事件被自动标记；接入 DeepSeek 后，可以直接用自然语言追问某次飞行的具体状况。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================ 界面示意 ============================ -->
+  <section class="section section--sub section--ruled" aria-labelledby="ui-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">界面示意</span>
+        <h2 id="ui-title" data-content="ui.title">运营视图长什么样</h2>
+        <p data-content="ui.lede">下面是用 HTML 与 CSS 绘制的界面结构示意，用于说明信息层级，不是真实产品截图。</p>
+      </div>
+
+      <div class="split split--wide-main" data-reveal>
+        <div class="mock" role="img" aria-label="HyicoPlatform 运营看板界面示意">
+          <div class="mock__bar">
+            <span class="mock__dots"><i></i><i></i><i></i></span>
+            <span>hyicoplatform / operations</span>
+          </div>
+          <div class="gc-ui" style="border-radius:0">
+            <div class="gc-ui__pane">
+              <span class="gc-ui__label">在线设备</span>
+              <span class="gc-ui__value" data-content="ui.mock.online">12</span>
+            </div>
+            <div class="gc-ui__pane">
+              <span class="gc-ui__label">今日架次</span>
+              <span class="gc-ui__value" data-content="ui.mock.sorties">38</span>
+            </div>
+            <div class="gc-ui__pane">
+              <span class="gc-ui__label">累计飞行</span>
+              <span class="gc-ui__value" data-content="ui.mock.hours">412 h</span>
+            </div>
+            <div class="gc-ui__pane">
+              <span class="gc-ui__label">待处理告警</span>
+              <span class="gc-ui__value" data-content="ui.mock.alerts">2</span>
+            </div>
+          </div>
+          <div class="mock__body">
+            <div class="mock__row">
+              <span>任务完成率</span>
+              <span class="mock__bar-track"><span class="mock__bar-fill" data-content-attr="style:ui.mock.bars.0.style" style="width: 94%"></span></span>
+              <span data-content="ui.mock.bars.0.value">94%</span>
+            </div>
+            <div class="mock__row">
+              <span>链路可用率</span>
+              <span class="mock__bar-track"><span class="mock__bar-fill" data-content-attr="style:ui.mock.bars.1.style" style="width: 88%; animation-delay: .1s"></span></span>
+              <span data-content="ui.mock.bars.1.value">88%</span>
+            </div>
+            <div class="mock__row">
+              <span>数据完整率</span>
+              <span class="mock__bar-track"><span class="mock__bar-fill" data-content-attr="style:ui.mock.bars.2.style" style="width: 99%; animation-delay: .2s"></span></span>
+              <span data-content="ui.mock.bars.2.value">99%</span>
+            </div>
+            <div class="mock__row">
+              <span>载荷利用率</span>
+              <span class="mock__bar-track"><span class="mock__bar-fill" data-content-attr="style:ui.mock.bars.3.style" style="width: 72%; animation-delay: .3s"></span></span>
+              <span data-content="ui.mock.bars.3.value">72%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack" data-reveal>
+          <h3 data-content="ui.points.title">视图设计的三个原则</h3>
+          <dl class="spec-list">
+            <div class="spec-list__row"><dt>一屏一结论</dt><dd>先给状态，再给明细</dd></div>
+            <div class="spec-list__row"><dt>异常优先</dt><dd>告警永远在首屏</dd></div>
+            <div class="spec-list__row"><dt>可下钻</dt><dd>每个数字都能点进原始记录</dd></div>
+          </dl>
+          <div class="notice">
+            <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="10" r="8"/><path d="M10 6.4v4.2M10 13.6v.1"/></svg>
+            <span data-content="ui.note">示意图中的数值仅用于说明排版结构，不代表真实业务数据。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 能力 ============================ -->
+  <section class="section" aria-labelledby="cap-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">能力</span>
+        <h2 id="cap-title" data-content="cap.title">平台提供什么</h2>
+      </div>
+
+      <div class="bento" data-reveal-stagger="70">
+        <article class="card card--accent b-2" data-reveal>
+          <div class="icon-tile">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16v11H4z"/><path d="M4 10h16M8 20h8"/>
+            </svg>
+          </div>
+          <h3 data-content="cap.items.0.title">远程监控</h3>
+          <p data-content="cap.items.0.desc">实时查看机队位置、飞行状态与链路质量，无需在现场。</p>
+        </article>
+
+        <article class="card card--accent b-2" data-reveal>
+          <div class="icon-tile">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/>
+            </svg>
+          </div>
+          <h3 data-content="cap.items.1.title">任务回放</h3>
+          <p data-content="cap.items.1.desc">按时间轴还原任意一次飞行，遥控指令与飞机响应可以逐帧对照。</p>
+        </article>
+
+        <article class="card card--accent b-2" data-reveal>
+          <div class="icon-tile">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 4 3 8.5l9 4.5 9-4.5z"/><path d="M3 15.5 12 20l9-4.5"/>
+            </svg>
+          </div>
+          <h3 data-content="cap.items.2.title">数据归档</h3>
+          <p data-content="cap.items.2.desc">按架次、任务、设备三个维度组织，长期留存并支持跨任务统计。</p>
+        </article>
+
+        <article class="card card--accent b-3" data-reveal>
+          <div class="icon-tile">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/>
+            </svg>
+          </div>
+          <h3 data-content="cap.items.3.title">异常归因</h3>
+          <p data-content="cap.items.3.desc">把振动、姿态、链路与电池数据的异常点自动对齐到同一条时间轴，减少翻日志的时间。</p>
+        </article>
+
+        <article class="card card--accent b-3" data-reveal>
+          <div class="icon-tile">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/>
+            </svg>
+          </div>
+          <h3 data-content="cap.items.4.title">机队管理</h3>
+          <p data-content="cap.items.4.desc">设备台账、固件版本与维护记录集中管理，避免同型号出现多种实际状态。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ DeepSeek ============================ -->
+  <section class="section surface-dark" aria-labelledby="ai-title">
+    <div class="wrap">
+      <div class="section__split">
+        <div class="stack" data-reveal>
+          <span class="eyebrow">大数据 + DeepSeek</span>
+          <h2 id="ai-title" data-content="ai.title">我们没有把它做成一个聊天框</h2>
+          <p data-content="ai.lede" style="color: var(--text-2)">把大模型直接接在数据上，很容易得到一个会编故事的助手。我们的做法是先让数据具备结构，再让模型只负责检索与描述——它引用的每一条结论都能落回原始记录。</p>
+        </div>
+
+        <div class="stack" data-reveal>
+          <div class="gc-feature">
+            <div class="gc-feature__item">
+              <span class="card__index">01</span>
+              <div>
+                <h3 data-content="ai.items.0.title">先结构化，再提问</h3>
+                <p data-content="ai.items.0.desc">架次、事件、参数都有明确的字段与单位，模型在结构化数据上检索，而不是读一堆日志文本。</p>
+              </div>
+            </div>
+            <div class="gc-feature__item">
+              <span class="card__index">02</span>
+              <div>
+                <h3 data-content="ai.items.1.title">结论可回溯</h3>
+                <p data-content="ai.items.1.desc">每一条回答都附带对应的时间区间与数据来源，点开就能看到原始曲线。</p>
+              </div>
+            </div>
+            <div class="gc-feature__item">
+              <span class="card__index">03</span>
+              <div>
+                <h3 data-content="ai.items.2.title">不替代判断</h3>
+                <p data-content="ai.items.2.desc">模型负责把「发生了什么」讲清楚；「要不要飞」始终由人决定。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 部署 ============================ -->
+  <section class="section" aria-labelledby="deploy-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">部署形态</span>
+        <h2 id="deploy-title" data-content="deploy.title">按你的数据边界来</h2>
+        <p data-content="deploy.lede">飞行数据往往涉及敏感区域与作业信息，因此部署方式不应该是「只能上云」。</p>
+      </div>
+
+      <div class="grid grid--3" data-reveal-stagger="80">
+        <article class="card" data-reveal>
+          <span class="card__index">形态 A</span>
+          <h3 data-content="deploy.items.0.title">公有云托管</h3>
+          <p data-content="deploy.items.0.desc">开箱即用，按机队规模订阅。适合试点与小规模运营。</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__index">形态 B</span>
+          <h3 data-content="deploy.items.1.title">私有化部署</h3>
+          <p data-content="deploy.items.1.desc">整套平台部署在你的内网或专有云，数据不出边界。</p>
+        </article>
+        <article class="card" data-reveal>
+          <span class="card__index">形态 C</span>
+          <h3 data-content="deploy.items.2.title">混合模式</h3>
+          <p data-content="deploy.items.2.desc">结构化指标留在本地，脱敏后的统计进云端做长期趋势与模型更新。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section class="section section--sub section--ruled">
+    <div class="wrap">
+      <div class="split" style="align-items: center">
+        <div class="stack" data-reveal>
+          <h2 data-content="cta.title">想看看平台跑你自己的数据？</h2>
+          <p data-content="cta.desc" style="color: var(--text-2)">如果你已经有机队和历史飞行数据，我们可以做一次接入演示，用你熟悉的作业场景来评估。</p>
+        </div>
+        <div class="row" data-reveal>
+          <a class="btn btn--lg" href="contact.html" data-content="cta.primary">预约演示</a>
+          <a class="btn btn--lg btn--ghost" href="hgc.html" data-content="cta.secondary">看 HGC 地面站</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand" href="index.html" aria-label="Hyico 首页">
+          <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="6" y="6" width="20" height="20" rx="4"/>
+            <path d="M6 16h20"/>
+            <circle cx="6" cy="6" r="2.4"/><circle cx="26" cy="6" r="2.4"/>
+            <circle cx="6" cy="26" r="2.4"/><circle cx="26" cy="26" r="2.4"/>
+          </svg>
+          <span class="brand__text">
+            <span class="brand__word">Hyico</span>
+            <span class="brand__sub">轻量 · 可靠 · 可运营</span>
+          </span>
+        </a>
+        <p data-content="site.description">Hyico 专注于轻型运输无人机、科研探测载荷与远程运营平台的开发。以 H 型构架为统一的飞行平台语言。</p>
+        <span class="chip"><span class="chip__dot chip__dot--live"></span><span data-content="site.status">研发中 · 接受试点合作</span></span>
+      </div>
+
+      <div class="site-footer__cols">
+        <div class="site-footer__col">
+          <h3>产品</h3>
+          <ul>
+            <li><a href="products.html">产品总览</a></li>
+            <li><a href="h770.html">HyicoFly-H770</a></li>
+            <li><a href="technology.html">H 型构架技术</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>软件</h3>
+          <ul>
+            <li><a href="platform.html">HyicoPlatform</a></li>
+            <li><a href="hgc.html">HyicoGroundControl</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>公司</h3>
+          <ul>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="news.html">新闻动态</a></li>
+            <li><a href="careers.html">加入我们</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>支持</h3>
+          <ul>
+            <li><a href="faq.html">常见问题</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <span data-content="site.copyright">© 2026 Hyico. 保留所有权利。</span>
+      <div class="site-footer__legal">
+        <a href="contact.html">联系我们</a>
+        <a href="faq.html">常见问题</a>
+        <a href="careers.html">加入我们</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/core/dom.js"></script>
+<script src="assets/js/core/content.js"></script>
+<script src="assets/js/core/theme.js"></script>
+<script src="assets/js/core/nav.js"></script>
+<script src="assets/js/components/reveal.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

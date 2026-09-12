@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-no-page-json>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>页面不存在 · Hyico</title>
+<meta name="description" content="这个地址没有对应的页面。">
+<meta name="theme-color" content="#EBF1EF">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, follow">
+
+<script>
+(function () {
+  /* 标记 JS 可用：滚动进场动画仅在此时才隐藏元素，避免禁用 JS 后内容不可见 */
+  document.documentElement.classList.add('has-js');
+  try {
+    var saved = localStorage.getItem('hyico-theme');
+    var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var root = document.documentElement;
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    root.style.colorScheme = dark ? 'dark' : 'light';
+  } catch (e) {}
+})();
+</script>
+
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/layout.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/pages.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header" data-header>
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/index.html" aria-label="Hyico 首页">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <rect x="6" y="6" width="20" height="20" rx="4"/>
+        <path d="M6 16h20"/>
+        <circle cx="6" cy="6" r="2.4"/><circle cx="26" cy="6" r="2.4"/>
+        <circle cx="6" cy="26" r="2.4"/><circle cx="26" cy="26" r="2.4"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__word">Hyico</span>
+        <span class="brand__sub" data-content="site.tagline">轻型运输无人机</span>
+      </span>
+    </a>
+
+    <div class="site-header__actions">
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"/>
+        </svg>
+      </button>
+      <a class="btn btn--sm" href="/index.html">返回首页</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="error-page">
+    <div class="wrap error-page__inner">
+      <svg class="error-page__art" viewBox="0 0 260 160" role="img" aria-label="断裂的 H 型构架线稿">
+        <g class="bp-prop">
+          <circle cx="52" cy="46" r="34"/>
+          <circle cx="208" cy="46" r="34"/>
+          <circle cx="52" cy="114" r="34"/>
+          <circle cx="208" cy="114" r="34"/>
+        </g>
+        <path class="bp-tube-arm" d="M52 46v68M208 46v68"/>
+        <g class="bp-tube-mid">
+          <path d="M52 80h54"/>
+          <path d="M154 80h54"/>
+        </g>
+        <circle class="bp-accent-thin" cx="130" cy="80" r="18"/>
+        <text class="bp-label bp-label--accent" x="130" y="85" text-anchor="middle">?</text>
+        <g class="bp-motor">
+          <circle cx="52" cy="46" r="7"/><circle cx="208" cy="46" r="7"/>
+          <circle cx="52" cy="114" r="7"/><circle cx="208" cy="114" r="7"/>
+        </g>
+      </svg>
+
+      <span class="eyebrow eyebrow--plain">HTTP 404</span>
+      <p class="error-page__code">404</p>
+      <h1 style="font-size: var(--fs-h3)" data-content="title">这个地址没有对应的页面</h1>
+      <p style="color: var(--text-2)" data-content="desc">链接可能已经失效，或者你在地址栏里少打了一个字母。下面是几个常用的入口。</p>
+
+      <div class="row" style="justify-content: center">
+        <a class="btn" href="/index.html" data-content="home">返回首页</a>
+        <a class="btn btn--ghost" href="/products.html" data-content="products">产品总览</a>
+        <a class="btn btn--ghost" href="/contact.html" data-content="contact">联系我们</a>
+      </div>
+
+      <nav class="crumbs" aria-label="站点导航" style="margin-top: var(--s-4)">
+        <ol>
+          <li><a href="/platform.html">HyicoPlatform</a></li>
+          <li><a href="/hgc.html">HGC 地面站</a></li>
+          <li><a href="/technology.html">H 型构架技术</a></li>
+          <li><a href="/news.html">新闻动态</a></li>
+          <li><a href="/faq.html">常见问题</a></li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<script src="/assets/js/core/dom.js"></script>
+<script src="/assets/js/core/content.js"></script>
+<script src="/assets/js/core/theme.js"></script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

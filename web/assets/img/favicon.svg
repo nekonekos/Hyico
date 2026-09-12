@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Hyico">
+  <rect width="32" height="32" rx="7" fill="#213630"/>
+  <g stroke="#9EBDB4" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <rect x="8.5" y="8.5" width="15" height="15" rx="3.2"/>
+    <path d="M8.5 16h15"/>
+  </g>
+  <g fill="#578E7D">
+    <circle cx="8.5" cy="8.5" r="2.1"/>
+    <circle cx="23.5" cy="8.5" r="2.1"/>
+    <circle cx="8.5" cy="23.5" r="2.1"/>
+    <circle cx="23.5" cy="23.5" r="2.1"/>
+  </g>
+</svg>

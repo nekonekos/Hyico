@@ -1,0 +1,334 @@
+/* ==========================================================================
+   Hyico · Layout
+   容器、栅格、分区节奏、页头页脚与抽屉的骨架定位。
+   ========================================================================== */
+
+/* ---------- 容器 ---------- */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.wrap--narrow { max-width: var(--wrap-narrow); }
+.wrap--wide { max-width: 1400px; }
+.wrap--flush { padding-inline: 0; }
+
+/* ---------- 分区 ---------- */
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.section--tight { padding-block: clamp(2.5rem, 1.6rem + 3.5vw, 4.5rem); }
+.section--flush-top { padding-block-start: 0; }
+.section--flush-bottom { padding-block-end: 0; }
+.section--sub { background-color: var(--bg-sub); }
+
+/* 细线分区，替代粗重色块 */
+.section--ruled { border-top: 1px solid var(--border); }
+
+.section__head {
+  display: grid;
+  gap: var(--s-4);
+  max-width: 62ch;
+  margin-bottom: clamp(2rem, 1.4rem + 2vw, 3.5rem);
+}
+
+.section__head--center {
+  justify-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.section__head p {
+  font-size: var(--fs-lede);
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+/* 章节标题行：左标题 + 右说明 */
+.section__split {
+  display: grid;
+  gap: var(--s-5) var(--s-12);
+  align-items: end;
+  margin-bottom: clamp(2rem, 1.4rem + 2vw, 3.5rem);
+}
+
+/* ---------- 通用栅格 ---------- */
+.grid { display: grid; gap: var(--s-5); }
+
+.grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.grid--gap-lg { gap: var(--s-8); }
+.grid--gap-sm { gap: var(--s-3); }
+
+/* 侧栏布局：主内容 + 侧栏 */
+.split {
+  display: grid;
+  gap: clamp(2rem, 1.2rem + 3vw, 4rem);
+}
+
+/* ---------- Bento：不等宽卡片网格 ---------- */
+.bento {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.bento > * { grid-column: span 6; }
+
+/* ---------- 栈式布局工具 ---------- */
+.stack { display: grid; gap: var(--s-4); }
+.stack--sm { gap: var(--s-2); }
+.stack--lg { gap: var(--s-8); }
+.stack--center { justify-items: center; text-align: center; }
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  align-items: center;
+}
+
+.row--between { justify-content: space-between; }
+.row--end { justify-content: flex-end; }
+
+/* ==========================================================================
+   页头
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background: var(--glass);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+
+/* 滚动后才出现分隔线，初始状态更干净 */
+.site-header.is-scrolled {
+  border-bottom-color: var(--border);
+  box-shadow: 0 1px 0 rgba(33, 54, 48, 0.02);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  min-height: var(--header-h);
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-inline-start: auto;
+}
+
+/* ==========================================================================
+   主内容
+   ========================================================================== */
+main { display: block; }
+
+/* ==========================================================================
+   页脚
+   ========================================================================== */
+.site-footer {
+  padding-block: clamp(3rem, 2rem + 4vw, 5rem) var(--s-8);
+  background-color: var(--bg-sub);
+  border-top: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--s-10) var(--s-8);
+}
+
+.site-footer__brand { display: grid; gap: var(--s-4); max-width: 34ch; }
+
+.site-footer__cols {
+  display: grid;
+  gap: var(--s-8);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.site-footer__col h3 {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: var(--s-3);
+}
+
+.site-footer__col ul { list-style: none; padding: 0; display: grid; gap: var(--s-2); }
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--s-10);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+  color: var(--text-3);
+}
+
+.site-footer__legal { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
+.site-footer__legal a { color: inherit; text-decoration: none; }
+.site-footer__legal a:hover { color: var(--accent-strong); }
+
+/* ==========================================================================
+   抽屉（移动端导航）
+   ========================================================================== */
+.drawer {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  z-index: var(--z-drawer);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+  padding: var(--s-6) var(--gutter) var(--s-10);
+  background: var(--bg);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity var(--dur-2) var(--ease), transform var(--dur-2) var(--ease-out);
+}
+
+.drawer[hidden] { display: none !important; }
+
+.drawer.is-open { opacity: 1; transform: translateY(0); }
+
+.drawer__nav { display: grid; gap: var(--s-1); }
+
+.drawer__group { border-bottom: 1px solid var(--border); }
+
+.drawer__link,
+.drawer__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  width: 100%;
+  padding: var(--s-4) 0;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  text-decoration: none;
+  text-align: start;
+}
+
+.drawer__link[aria-current="page"] { color: var(--accent-strong); }
+
+.drawer__sub {
+  display: grid;
+  gap: var(--s-1);
+  padding-bottom: var(--s-3);
+  padding-inline-start: var(--s-4);
+  border-inline-start: 1px solid var(--border);
+  margin-bottom: var(--s-2);
+}
+
+.drawer__sub a {
+  padding: var(--s-2) 0;
+  font-size: var(--fs-base);
+  color: var(--text-2);
+  text-decoration: none;
+}
+
+.drawer__sub a:hover { color: var(--accent-strong); }
+
+.drawer__foot {
+  display: grid;
+  gap: var(--s-3);
+  padding-top: var(--s-4);
+  margin-top: auto;
+  font-size: var(--fs-sm);
+  /* 用 --text-2 而非 --text-3：邮箱需要满足正文对比度，不只是装饰 */
+  color: var(--text-2);
+}
+
+/* ==========================================================================
+   Hero 布局
+   ========================================================================== */
+.hero {
+  position: relative;
+  padding-block: clamp(3rem, 1.5rem + 7vw, 7rem) clamp(3.5rem, 2rem + 6vw, 7rem);
+  overflow: hidden;
+}
+
+/* 背景网格：极淡的工程坐标纸 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 20%, transparent 78%);
+  pointer-events: none;
+}
+
+/* 品牌色柔和光晕 */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  inset-inline-end: -10%;
+  width: min(780px, 90vw);
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 50% 50%,
+    color-mix(in srgb, var(--mint-200) 34%, transparent) 0%,
+    color-mix(in srgb, var(--mint-100) 22%, transparent) 38%,
+    transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.hero__inner { position: relative; z-index: var(--z-base); }
+
+/* ==========================================================================
+   断点
+   ========================================================================== */
+@media (min-width: 640px) {
+  .grid--2\@sm { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bento > .b-3 { grid-column: span 3; }
+}
+
+@media (min-width: 900px) {
+  .site-footer__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); }
+  .split { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+  .split--aside-left { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+  .split--wide-main { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+  .section__split { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+
+  .hero__inner { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4.5rem); align-items: center; }
+
+  .bento > .b-2 { grid-column: span 2; }
+  .bento > .b-3 { grid-column: span 3; }
+  .bento > .b-4 { grid-column: span 4; }
+  .bento > .b-5 { grid-column: span 5; }
+}
+
+@media (max-width: 899px) {
+  .grid--3, .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 639px) {
+  :root { --header-h: 58px; }
+  .grid--2, .grid--3, .grid--4 { grid-template-columns: minmax(0, 1fr); }
+  .site-footer__bottom { justify-content: flex-start; }
+}

@@ -1,0 +1,36 @@
+# ==========================================================================
+# Cloudflare Pages 响应头配置
+# 放在 web/ 根目录，Cloudflare Pages 会自动读取，无需 Workers。
+# 文档：https://developers.cloudflare.com/pages/configuration/headers/
+# ==========================================================================
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  # 说明：本站没有任何外部资源，因此 CSP 可以收得很紧。
+  # 唯一需要放行 inline 的是 <head> 里的防闪白脚本，以及 JSON 内容渲染用的内联样式。
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'self'
+
+# HTML 每次重新校验，保证改完文案立刻生效
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 同名 JSON 内容层同样不缓存，避免内容与页面版本错位
+/*.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 静态资源长期缓存（文件名带变更时建议加版本后缀或改用哈希路径）
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

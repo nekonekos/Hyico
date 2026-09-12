@@ -1,0 +1,65 @@
+{
+  "_readme": "新闻数据源。news.html（列表页）和首页的最新动态都读这个文件。新增一条：复制 items 里的一个对象，写好 slug 与 href，再在 news/<slug>.json 放正文即可。",
+  "_fieldNotes": {
+    "slug": "唯一标识，必须与 news/<slug>.json 的文件名一致",
+    "href": "列表项链接，按 news-post.html?slug=<slug> 填写",
+    "tags": "用于列表页分类筛选，字符串数组",
+    "date": "显示用日期，建议 YYYY-MM-DD"
+  },
+
+  "page": {
+    "eyebrow": "新闻动态",
+    "title": "进展与记录",
+    "lede": "我们不发布通稿式的进展。这里写的是测试怎么做、为什么这么选、哪些还没搞定。"
+  },
+
+  "empty": {
+    "title": "这个分类下暂时没有内容",
+    "desc": "换一个分类看看，或者稍后再来。"
+  },
+
+  "subscribe": {
+    "title": "想第一时间收到更新？",
+    "desc": "我们没有做推送系统，也没有接第三方订阅服务。发一封邮件说明来意，我们会在有新进展时直接回信给你。",
+    "cta": "订阅进展"
+  },
+
+  "items": [
+    {
+      "slug": "h770-frame-design",
+      "date": "2026-02-18",
+      "category": "技术",
+      "tags": ["技术", "产品"],
+      "title": "为什么我们坚持 H 型构架起步",
+      "excerpt": "从 X 型到 H 型不是审美选择，而是载荷安装空间、维护颗粒度与产品线扩展方式共同推导出的结果。这篇文章把推导过程写出来。",
+      "href": "news-post.html?slug=h770-frame-design"
+    },
+    {
+      "slug": "platform-deepseek-integration",
+      "date": "2026-01-27",
+      "category": "平台",
+      "tags": ["平台", "技术"],
+      "title": "HyicoPlatform 接入 DeepSeek 后的第一批用法",
+      "excerpt": "我们没有把大模型做成一个聊天框，而是让它先成为飞行数据的检索层与异常描述层。这里记录三个已经跑通的使用场景。",
+      "href": "news-post.html?slug=platform-deepseek-integration"
+    },
+    {
+      "slug": "optical-flow-field-notes",
+      "date": "2026-01-09",
+      "category": "测试",
+      "tags": ["测试", "技术"],
+      "title": "光流定位在无 GPS 环境下的实测笔记",
+      "excerpt": "在室内与林下场景中，光流承担了主要的水平位置保持。我们记录了不同地面纹理与光照条件下的表现差异。",
+      "href": "news-post.html?slug=optical-flow-field-notes"
+    },
+    {
+      "slug": "project-start",
+      "date": "2025-12-02",
+      "category": "公司",
+      "tags": ["公司"],
+      "title": "Hyico 项目启动：从一张 H 型构架图纸开始",
+      "excerpt": "我们决定把「轻型运输」当成一个具体的工程问题来做，而不是一个概念。这是项目的起点，也是这份公开记录的第一篇。",
+      "href": "news-post.html?slug=project-start"
+    }
+  ]
+}

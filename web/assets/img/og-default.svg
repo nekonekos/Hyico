@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Hyico — 轻型运输无人机 · 科研探测 · 远程运营平台">
+  <defs>
+    <linearGradient id="ogBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EBF1EF"/>
+      <stop offset="0.55" stop-color="#DCE7E3"/>
+      <stop offset="1" stop-color="#C9DBD5"/>
+    </linearGradient>
+    <radialGradient id="ogGlow" cx="0.78" cy="0.3" r="0.6">
+      <stop offset="0" stop-color="#9EBDB4" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#9EBDB4" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="ogGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0v60" fill="none" stroke="#578E7D" stroke-opacity="0.14" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#ogBg)"/>
+  <rect width="1200" height="630" fill="url(#ogGrid)"/>
+  <rect width="1200" height="630" fill="url(#ogGlow)"/>
+
+  <!-- H 型构架图纸 -->
+  <g transform="translate(790 315)" stroke="#325249" stroke-width="7" fill="none" stroke-linecap="round">
+    <path d="M-150-150v300M150-150v300"/>
+  </g>
+  <rect x="700" y="265" width="180" height="100" rx="14" fill="#9EBDB4" fill-opacity="0.32" stroke="#578E7D" stroke-width="4"/>
+  <g stroke="#578E7D" stroke-width="3" fill="none" stroke-dasharray="7 8" stroke-opacity="0.75">
+    <circle cx="640" cy="165" r="96"/>
+    <circle cx="940" cy="165" r="96"/>
+    <circle cx="640" cy="465" r="96"/>
+    <circle cx="940" cy="465" r="96"/>
+  </g>
+  <g fill="#213630">
+    <circle cx="640" cy="165" r="17"/>
+    <circle cx="940" cy="165" r="17"/>
+    <circle cx="640" cy="465" r="17"/>
+    <circle cx="940" cy="465" r="17"/>
+  </g>
+
+  <!-- 标识 -->
+  <g transform="translate(96 96)">
+    <rect x="0" y="0" width="72" height="72" rx="17" fill="#213630"/>
+    <g stroke="#9EBDB4" stroke-width="4" fill="none" stroke-linecap="round">
+      <rect x="19" y="19" width="34" height="34" rx="7"/>
+      <path d="M19 36h34"/>
+    </g>
+    <g fill="#578E7D">
+      <circle cx="19" cy="19" r="4.6"/><circle cx="53" cy="19" r="4.6"/>
+      <circle cx="19" cy="53" r="4.6"/><circle cx="53" cy="53" r="4.6"/>
+    </g>
+    <text x="92" y="48" font-family="system-ui, 'Segoe UI', sans-serif" font-size="40" font-weight="700" fill="#213630" letter-spacing="0.5">Hyico</text>
+  </g>
+
+  <!-- 标题 -->
+  <g font-family="system-ui, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" fill="#213630">
+    <text x="96" y="300" font-size="58" font-weight="700" letter-spacing="-1">轻型运输无人机</text>
+    <text x="96" y="372" font-size="58" font-weight="700" letter-spacing="-1">科研探测 · 远程运营平台</text>
+  </g>
+  <g font-family="ui-monospace, Consolas, monospace" fill="#446F62" font-size="20" letter-spacing="1.4">
+    <text x="96" y="446">HYICOFLY-H770 · 770MM 轴距 · 1KG 载荷</text>
+    <text x="96" y="480">HYICOPLATFORM · HGC 地面站</text>
+  </g>
+  <path d="M96 520h180" stroke="#578E7D" stroke-width="5" stroke-linecap="round"/>
+</svg>

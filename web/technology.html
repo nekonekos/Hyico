@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>H 型构架技术 · Hyico</title>
+<meta name="description" content="为什么 Hyico 只做 H 型构架：结构布局、载荷安装空间、维护颗粒度与产品线扩展方式，以及它与 X 型构架的真实差异。">
+<meta name="theme-color" content="#EBF1EF">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hyico.pages.dev/technology.html">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon.svg">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Hyico">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="H 型构架技术 · Hyico">
+<meta property="og:description" content="结构、气动、维护性与扩展性——我们把构型选择当成产品定义的一部分。">
+<meta property="og:image" content="assets/img/og-default.svg">
+<meta property="og:url" content="https://hyico.pages.dev/technology.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>
+(function () {
+  /* 标记 JS 可用：滚动进场动画仅在此时才隐藏元素，避免禁用 JS 后内容不可见 */
+  document.documentElement.classList.add('has-js');
+  try {
+    var saved = localStorage.getItem('hyico-theme');
+    var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var root = document.documentElement;
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    root.style.colorScheme = dark ? 'dark' : 'light';
+  } catch (e) {}
+})();
+</script>
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header" data-header>
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="Hyico 首页">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <rect x="6" y="6" width="20" height="20" rx="4"/>
+        <path d="M6 16h20"/>
+        <circle cx="6" cy="6" r="2.4"/><circle cx="26" cy="6" r="2.4"/>
+        <circle cx="6" cy="26" r="2.4"/><circle cx="26" cy="26" r="2.4"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__word">Hyico</span>
+        <span class="brand__sub" data-content="site.tagline">轻型运输无人机</span>
+      </span>
+    </a>
+
+    <nav class="nav" data-nav aria-label="主导航">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="index.html">首页</a></li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            产品与技术
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="products.html">产品总览<span class="nav__menu-desc">H 系列机型与载荷配置</span></a>
+            <a href="h770.html">HyicoFly-H770<span class="nav__menu-desc">770mm 轴距 · 1kg 载荷</span></a>
+            <a href="technology.html">H 型构架技术<span class="nav__menu-desc">结构、气动与可靠性</span></a>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            平台与地面站
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="platform.html">HyicoPlatform<span class="nav__menu-desc">远程监控与运营平台</span></a>
+            <a href="hgc.html">HyicoGroundControl<span class="nav__menu-desc">飞手优先的地面站</span></a>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            公司
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="about.html">关于我们<span class="nav__menu-desc">团队、理念与进展</span></a>
+            <a href="news.html">新闻动态</a>
+            <a href="careers.html">加入我们</a>
+          </div>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="faq.html">支持</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"/>
+        </svg>
+      </button>
+      <a class="btn btn--sm site-header__cta" href="contact.html">联系我们</a>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-drawer" aria-label="打开菜单">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="site-drawer" data-drawer hidden>
+  <nav class="drawer__nav" data-drawer-nav aria-label="移动端导航"></nav>
+  <div class="drawer__foot">
+    <a class="btn" href="contact.html">联系我们</a>
+    <span data-content="site.contactEmail">contact@hyico.com</span>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============================ 页面头 ============================ -->
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="crumbs" aria-label="面包屑">
+        <ol>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="products.html">产品总览</a></li>
+          <li><span aria-current="page">H 型构架技术</span></li>
+        </ol>
+      </nav>
+      <span class="eyebrow" data-content="page.eyebrow">技术</span>
+      <h1 data-content="page.title">构型不是审美问题</h1>
+      <p data-content="page.lede">选择 H 型还是 X 型，会同时决定载荷能装在哪、坏了一个件要换多少东西、以及下一代机型怎么长出来。所以我们把它当成产品定义的一部分，而不是结构工程师的偏好。</p>
+    </div>
+  </section>
+
+  <!-- ============================ 构型对比图 ============================ -->
+  <section class="section" aria-labelledby="layout-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">结构布局</span>
+        <h2 id="layout-title" data-content="layout.title">两种布局，两种取舍</h2>
+        <p data-content="layout.lede">下图是同一轴距下两种构型的俯视对比。差别不在外形，而在中央区域被占用了多少，以及载荷离重心有多远。</p>
+      </div>
+
+      <div class="grid grid--2 grid--gap-lg" data-reveal>
+        <div class="blueprint">
+          <svg viewBox="0 0 400 300" role="img" aria-label="H 型构架俯视示意：两根 20mm 机臂碳管承载四个电机，25mm 中梁在中央连接两者，中心板夹持载荷">
+            <text class="bp-label bp-label--accent" x="200" y="26" text-anchor="middle">H 型构架</text>
+            <g class="bp-disc">
+              <circle cx="104" cy="86" r="52"/>
+              <circle cx="296" cy="86" r="52"/>
+              <circle cx="104" cy="214" r="52"/>
+              <circle cx="296" cy="214" r="52"/>
+            </g>
+            <g class="bp-prop">
+              <circle cx="104" cy="86" r="52"/>
+              <circle cx="296" cy="86" r="52"/>
+              <circle cx="104" cy="214" r="52"/>
+              <circle cx="296" cy="214" r="52"/>
+            </g>
+            <!-- 20mm 机臂碳管 -->
+            <path class="bp-tube-arm" d="M104 86v128M296 86v128"/>
+            <!-- 25mm 中梁 -->
+            <path class="bp-tube-mid" d="M104 150h192"/>
+            <!-- 铝合金三通 -->
+            <rect class="bp-fitting" x="92" y="141" width="24" height="18" rx="4"/>
+            <rect class="bp-fitting" x="284" y="141" width="24" height="18" rx="4"/>
+            <!-- 80mm 中心板 + 载荷 -->
+            <rect class="bp-plate-fill" x="178" y="112" width="44" height="86" rx="4"/>
+            <text class="bp-label bp-label--accent" x="200" y="130" text-anchor="middle">中心板</text>
+            <rect class="bp-accent" x="186" y="164" width="28" height="26" rx="4"/>
+            <text class="bp-label" x="200" y="181" text-anchor="middle">载荷</text>
+            <g class="bp-motor">
+              <circle cx="104" cy="86" r="9"/><circle cx="296" cy="86" r="9"/>
+              <circle cx="104" cy="214" r="9"/><circle cx="296" cy="214" r="9"/>
+            </g>
+            <text class="bp-label" x="200" y="266" text-anchor="middle">中央区域连续 · 载荷贴近重心</text>
+          </svg>
+        </div>
+
+        <div class="blueprint">
+          <svg viewBox="0 0 400 300" role="img" aria-label="X 型构架俯视示意">
+            <text class="bp-label" x="200" y="26" text-anchor="middle">X 型构架</text>
+            <g class="bp-prop">
+              <circle cx="104" cy="86" r="52"/>
+              <circle cx="296" cy="86" r="52"/>
+              <circle cx="104" cy="214" r="52"/>
+              <circle cx="296" cy="214" r="52"/>
+            </g>
+            <g class="bp-frame">
+              <path d="M104 86 296 214M296 86 104 214"/>
+            </g>
+            <circle class="bp-plate" cx="200" cy="150" r="34"/>
+            <g class="bp-thin">
+              <path d="M200 116v68M166 150h68"/>
+            </g>
+            <text class="bp-label" x="200" y="154" text-anchor="middle">机臂交汇</text>
+            <g class="bp-motor">
+              <circle cx="104" cy="86" r="9"/><circle cx="296" cy="86" r="9"/>
+              <circle cx="104" cy="214" r="9"/><circle cx="296" cy="214" r="9"/>
+            </g>
+            <text class="bp-label" x="200" y="266" text-anchor="middle">中心被机臂与线束占据</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 逐项对比 ============================ -->
+  <section class="section section--sub section--ruled" aria-labelledby="compare-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">逐项对比</span>
+        <h2 id="compare-title" data-content="compare.title">差在哪里</h2>
+      </div>
+
+      <div class="table-scroll" data-reveal>
+        <table class="compare">
+          <caption class="visually-hidden">H 型构架与 X 型构架逐项对比</caption>
+          <thead>
+            <tr>
+              <th scope="col">维度</th>
+              <th scope="col" class="is-ours">H 型构架</th>
+              <th scope="col">X 型构架</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">中央区域</th>
+              <td class="is-ours">两根 20mm 机臂碳管之间是连续空间，中心板可夹持电池与载荷</td>
+              <td>四臂交汇于中心，可用空间被切割</td>
+            </tr>
+            <tr>
+              <th scope="row">载荷位置</th>
+              <td class="is-ours">挂在重心正下方，姿态变化对载荷影响更小</td>
+              <td>载荷多为偏置，需要配平</td>
+            </tr>
+            <tr>
+              <th scope="row">线束布置</th>
+              <td class="is-ours">沿碳管内腔走线，路径直且四路等长</td>
+              <td>四臂向心汇聚，线束在中心交错</td>
+            </tr>
+            <tr>
+              <th scope="row">维护颗粒度</th>
+              <td class="is-ours">机臂、中梁、中心板可分别拆换</td>
+              <td>多为一体机架，局部损伤牵动整体</td>
+            </tr>
+            <tr>
+              <th scope="row">轴距扩展</th>
+              <td class="is-ours">换更长的机臂管即可，中梁与中心板沿用</td>
+              <td>通常需要重新设计机身</td>
+            </tr>
+            <tr>
+              <th scope="row">结构重量</th>
+              <td class="is-ours">同等轴距下略高于 X 型，用材料与截面优化补偿</td>
+              <td>路径最短，理论上更轻</td>
+            </tr>
+            <tr>
+              <th scope="row">悬停效率</th>
+              <td class="is-ours">桨盘间距大、气流干扰小，悬停时更稳</td>
+              <td>桨盘更靠近，桨尖干扰略大</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="notice" style="margin-top: var(--s-6)" data-reveal>
+        <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="10" r="8"/><path d="M10 6.4v4.2M10 13.6v.1"/></svg>
+        <span data-content="compare.note">上表是比较两种布局的一般性差异，不代表所有具体机型的实测结果。我们的取舍是在「载重 + 长航时 + 可维护」三个约束下做出的。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 设计取舍 ============================ -->
+  <section class="section" aria-labelledby="tradeoff-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">设计取舍</span>
+        <h2 id="tradeoff-title" data-content="tradeoff.title">我们为什么接受这些代价</h2>
+      </div>
+
+      <div class="value-grid" data-reveal-stagger="80">
+        <div class="value-cell" data-reveal>
+          <span class="card__index">01</span>
+          <h3 data-content="tradeoff.items.0.title">结构重量略高</h3>
+          <p data-content="tradeoff.items.0.desc">H 型在同等轴距下比 X 型重一点，我们用碳纤维铺层与截面形状把它压回去，用重量换来了载荷安装的余量。</p>
+        </div>
+        <div class="value-cell" data-reveal>
+          <span class="card__index">02</span>
+          <h3 data-content="tradeoff.items.1.title">机身尺寸更大</h3>
+          <p data-content="tradeoff.items.1.desc">纵梁必然带来更长的机身。我们把它控制在一个人可以搬动的范围内，并把桨设计为可折叠以适应运输。</p>
+        </div>
+        <div class="value-cell" data-reveal>
+          <span class="card__index">03</span>
+          <h3 data-content="tradeoff.items.2.title">不追求单一指标</h3>
+          <p data-content="tradeoff.items.2.desc">我们不会为了某一项参数好看而牺牲整体可用性。参数表是用来回答问题的，不是用来赢比较的。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 材料与工艺 ============================ -->
+  <section class="section surface-dark" aria-labelledby="material-title">
+    <div class="wrap">
+      <div class="section__split">
+        <div class="stack" data-reveal>
+          <span class="eyebrow">材料与工艺</span>
+          <h2 id="material-title" data-content="material.title">好构型还需要好工艺</h2>
+          <p data-content="material.lede" style="color: var(--text-2)">结构能撑住是一回事，能量产且每个批次都一样是另一回事。我们把连接件标准化，把承力路径做直，让装配结果不依赖师傅的手感。</p>
+        </div>
+
+        <dl class="spec-list" data-reveal>
+          <div class="spec-list__row"><dt>主体材料</dt><dd>碳纤维复材</dd></div>
+          <div class="spec-list__row"><dt>连接件</dt><dd>标准化金属件</dd></div>
+          <div class="spec-list__row"><dt>走线</dt><dd>沿纵梁内腔</dd></div>
+          <div class="spec-list__row"><dt>可拆单元</dt><dd>纵梁 / 横梁 / 舱体</dd></div>
+          <div class="spec-list__row"><dt>桨叶</dt><dd>可折叠</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="split" style="align-items: center">
+        <div class="stack" data-reveal>
+          <h2 data-content="cta.title">想看具体的结构图？</h2>
+          <p data-content="cta.desc" style="color: var(--text-2)">结构分解图、载荷接口尺寸与装配说明属于受控资料，我们会在沟通具体任务后提供。</p>
+        </div>
+        <div class="row" data-reveal>
+          <a class="btn btn--lg" href="contact.html" data-content="cta.primary">联系我们</a>
+          <a class="btn btn--lg btn--ghost" href="h770.html" data-content="cta.secondary">看 HyicoFly-H770</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand" href="index.html" aria-label="Hyico 首页">
+          <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="6" y="6" width="20" height="20" rx="4"/>
+            <path d="M6 16h20"/>
+            <circle cx="6" cy="6" r="2.4"/><circle cx="26" cy="6" r="2.4"/>
+            <circle cx="6" cy="26" r="2.4"/><circle cx="26" cy="26" r="2.4"/>
+          </svg>
+          <span class="brand__text">
+            <span class="brand__word">Hyico</span>
+            <span class="brand__sub">轻量 · 可靠 · 可运营</span>
+          </span>
+        </a>
+        <p data-content="site.description">Hyico 专注于轻型运输无人机、科研探测载荷与远程运营平台的开发。以 H 型构架为统一的飞行平台语言。</p>
+        <span class="chip"><span class="chip__dot chip__dot--live"></span><span data-content="site.status">研发中 · 接受试点合作</span></span>
+      </div>
+
+      <div class="site-footer__cols">
+        <div class="site-footer__col">
+          <h3>产品</h3>
+          <ul>
+            <li><a href="products.html">产品总览</a></li>
+            <li><a href="h770.html">HyicoFly-H770</a></li>
+            <li><a href="technology.html">H 型构架技术</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>软件</h3>
+          <ul>
+            <li><a href="platform.html">HyicoPlatform</a></li>
+            <li><a href="hgc.html">HyicoGroundControl</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>公司</h3>
+          <ul>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="news.html">新闻动态</a></li>
+            <li><a href="careers.html">加入我们</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>支持</h3>
+          <ul>
+            <li><a href="faq.html">常见问题</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <span data-content="site.copyright">© 2026 Hyico. 保留所有权利。</span>
+      <div class="site-footer__legal">
+        <a href="contact.html">联系我们</a>
+        <a href="faq.html">常见问题</a>
+        <a href="careers.html">加入我们</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/core/dom.js"></script>
+<script src="assets/js/core/content.js"></script>
+<script src="assets/js/core/theme.js"></script>
+<script src="assets/js/core/nav.js"></script>
+<script src="assets/js/components/reveal.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

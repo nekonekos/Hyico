@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>加入我们 · Hyico</title>
+<meta name="description" content="Hyico 正在招聘结构、飞控、平台软件与试飞测试方向的工程师。我们做 H 型构架轻型运输无人机与远程运营平台。">
+<meta name="theme-color" content="#EBF1EF">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hyico.pages.dev/careers.html">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hyico">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="加入我们 · Hyico">
+<meta property="og:description" content="做一台能真正干活的飞机。">
+<meta property="og:image" content="assets/img/og-default.svg">
+<meta property="og:url" content="https://hyico.pages.dev/careers.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>
+(function () {
+  /* 标记 JS 可用：滚动进场动画仅在此时才隐藏元素，避免禁用 JS 后内容不可见 */
+  document.documentElement.classList.add('has-js');
+  try {
+    var saved = localStorage.getItem('hyico-theme');
+    var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var root = document.documentElement;
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    root.style.colorScheme = dark ? 'dark' : 'light';
+  } catch (e) {}
+})();
+</script>
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header" data-header>
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="Hyico 首页">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <rect x="6" y="6" width="20" height="20" rx="4"/>
+        <path d="M6 16h20"/>
+        <circle cx="6" cy="6" r="2.4"/><circle cx="26" cy="6" r="2.4"/>
+        <circle cx="6" cy="26" r="2.4"/><circle cx="26" cy="26" r="2.4"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__word">Hyico</span>
+        <span class="brand__sub" data-content="site.tagline">轻型运输无人机</span>
+      </span>
+    </a>
+
+    <nav class="nav" data-nav aria-label="主导航">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="index.html">首页</a></li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            产品与技术
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="products.html">产品总览<span class="nav__menu-desc">H 系列机型与载荷配置</span></a>
+            <a href="h770.html">HyicoFly-H770<span class="nav__menu-desc">770mm 轴距 · 1kg 载荷</span></a>
+            <a href="technology.html">H 型构架技术<span class="nav__menu-desc">结构、气动与可靠性</span></a>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            平台与地面站
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="platform.html">HyicoPlatform<span class="nav__menu-desc">远程监控与运营平台</span></a>
+            <a href="hgc.html">HyicoGroundControl<span class="nav__menu-desc">飞手优先的地面站</span></a>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-menu">
+          <button type="button" class="nav__link" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+            公司
+            <svg class="nav__caret" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5 8 10.5l4-4"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a href="about.html">关于我们<span class="nav__menu-desc">团队、理念与进展</span></a>
+            <a href="news.html">新闻动态</a>
+            <a href="careers.html">加入我们</a>
+          </div>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="faq.html">支持</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"/>
+        </svg>
+      </button>
+      <a class="btn btn--sm site-header__cta" href="contact.html">联系我们</a>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-drawer" aria-label="打开菜单">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="site-drawer" data-drawer hidden>
+  <nav class="drawer__nav" data-drawer-nav aria-label="移动端导航"></nav>
+  <div class="drawer__foot">
+    <a class="btn" href="contact.html">联系我们</a>
+    <span data-content="site.contactEmail">contact@hyico.com</span>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============================ 页面头 ============================ -->
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="crumbs" aria-label="面包屑">
+        <ol>
+          <li><a href="index.html">首页</a></li>
+          <li><span aria-current="page">加入我们</span></li>
+        </ol>
+      </nav>
+      <span class="eyebrow" data-content="page.eyebrow">加入我们</span>
+      <h1 data-content="page.title">做一台能真正干活的飞机</h1>
+      <p data-content="page.lede">我们很小，所以每个人负责的东西都很具体。你会看到自己画的那根梁被装上去，也会看到自己写的那个界面被飞手在风里用。如果你受够了大公司里说不清归属的分工，这里可能更合适。</p>
+      <div class="row">
+        <span class="chip chip--accent"><span class="chip__dot chip__dot--live"></span><span data-content="page.status">4 个开放职位</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 为什么 ============================ -->
+  <section class="section" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">为什么值得来</span>
+        <h2 id="why-title" data-content="why.title">这里的三件事</h2>
+      </div>
+
+      <div class="value-grid" data-reveal-stagger="80">
+        <div class="value-cell" data-reveal>
+          <span class="card__index">01</span>
+          <h3 data-content="why.items.0.title">反馈很快</h3>
+          <p data-content="why.items.0.desc">上午改的东西，下午可能就上天了。没有层层评审，也不用等一个季度才能看到结果。</p>
+        </div>
+        <div class="value-cell" data-reveal>
+          <span class="card__index">02</span>
+          <h3 data-content="why.items.1.title">边界很宽</h3>
+          <p data-content="why.items.1.desc">我们鼓励你伸手到隔壁领域。做结构的可以碰飞控参数，写后端的可以上机试飞——只要能把事做完。</p>
+        </div>
+        <div class="value-cell" data-reveal>
+          <span class="card__index">03</span>
+          <h3 data-content="why.items.2.title">不吹参数</h3>
+          <p data-content="why.items.2.desc">我们对外只写确认过的数据。这意味着你的工作成果不会被拿去粉饰，也不用替夸大的指标收拾残局。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 职位 ============================ -->
+  <section class="section section--sub section--ruled" id="positions" aria-labelledby="jobs-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">开放职位</span>
+        <h2 id="jobs-title" data-content="jobs.title">现在在招</h2>
+        <p data-content="jobs.lede">没有找到合适的岗位也没关系。把你的作品和想做的事发过来，我们会认真看。</p>
+      </div>
+
+      <div class="tabs__list" role="group" aria-label="按方向筛选" style="margin-bottom: var(--s-6)"
+           data-filter-bar="#job-list" data-empty="#job-list-empty" data-reveal>
+        <button class="tabs__tab" type="button" data-filter="*" aria-pressed="true">全部</button>
+        <button class="tabs__tab" type="button" data-filter="结构" aria-pressed="false">结构</button>
+        <button class="tabs__tab" type="button" data-filter="飞控" aria-pressed="false">飞控</button>
+        <button class="tabs__tab" type="button" data-filter="软件" aria-pressed="false">软件</button>
+        <button class="tabs__tab" type="button" data-filter="测试" aria-pressed="false">测试</button>
+      </div>
+
+      <div class="post-list" id="job-list" data-each="items" data-reveal>
+        <a class="post-item post-item--with-date" href="careers.html" data-template data-post-item
+           data-content-attr="href:href">
+          <span class="post-item__meta">
+            <span data-content="team">方向</span>
+            <span data-content="type">全职</span>
+          </span>
+          <span>
+            <span class="post-item__title" data-content="title">职位名称</span>
+            <span class="post-item__excerpt" data-content="excerpt">职位简介</span>
+            <span class="tag-list" style="margin-top: var(--s-3)" data-each="tags">
+              <span class="chip" data-template data-post-tag data-content="value">标签</span>
+            </span>
+          </span>
+          <svg class="post-item__arrow" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>
+        </a>
+      </div>
+
+      <div class="empty-state" id="job-list-empty" hidden>
+        <strong data-content="empty.title">这个方向暂时没有开放职位</strong>
+        <span data-content="empty.desc">但你可以直接发邮件自荐，我们一直愿意聊聊。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 流程 ============================ -->
+  <section class="section" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">流程</span>
+        <h2 id="process-title" data-content="process.title">我们怎么招人</h2>
+        <p data-content="process.lede">流程刻意做得短。我们不设置笔试环节，也不会让你做和实际工作无关的题目。</p>
+      </div>
+
+      <ol class="flow" data-reveal-stagger="90">
+        <li class="flow__step" data-reveal>
+          <h3 data-content="process.items.0.title">发邮件</h3>
+          <p data-content="process.items.0.desc">把简历和一份你做过的东西发过来。作品比简历重要。</p>
+        </li>
+        <li class="flow__step" data-reveal>
+          <h3 data-content="process.items.1.title">聊一次</h3>
+          <p data-content="process.items.1.desc">一次一到两小时的技术交流，围绕你做过的项目展开，没有标准答案。</p>
+        </li>
+        <li class="flow__step" data-reveal>
+          <h3 data-content="process.items.2.title">看现场</h3>
+          <p data-content="process.items.2.desc">来一次我们的场地，看看真实的工作环境和在做的飞机。</p>
+        </li>
+        <li class="flow__step" data-reveal>
+          <h3 data-content="process.items.3.title">给答复</h3>
+          <p data-content="process.items.3.desc">无论结果如何，我们都会明确回复，不会让你一直等。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section class="section surface-dark">
+    <div class="wrap">
+      <div class="split" style="align-items: center">
+        <div class="stack" data-reveal>
+          <h2 data-content="cta.title">直接发邮件就行</h2>
+          <p data-content="cta.desc" style="color: var(--text-2)">没有表单要填，也没有账号要注册。说明你想做什么，附上能证明你做过的东西即可。</p>
+        </div>
+        <div class="row" data-reveal>
+          <a class="btn btn--lg" href="mailto:jobs@hyico.com?subject=%5BHyico%5D%20%E5%BA%94%E8%81%98" data-content="cta.primary">发简历到 jobs@hyico.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand" href="index.html" aria-label="Hyico 首页">
+          <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="6" y="6" width="20" height="20" rx="4"/>
+            <path d="M6 16h20"/>
+            <circle cx="6" cy="6" r="2.4"/><circle cx="26" cy="6" r="2.4"/>
+            <circle cx="6" cy="26" r="2.4"/><circle cx="26" cy="26" r="2.4"/>
+          </svg>
+          <span class="brand__text">
+            <span class="brand__word">Hyico</span>
+            <span class="brand__sub">轻量 · 可靠 · 可运营</span>
+          </span>
+        </a>
+        <p data-content="site.description">Hyico 专注于轻型运输无人机、科研探测载荷与远程运营平台的开发。以 H 型构架为统一的飞行平台语言。</p>
+        <span class="chip"><span class="chip__dot chip__dot--live"></span><span data-content="site.status">研发中 · 接受试点合作</span></span>
+      </div>
+
+      <div class="site-footer__cols">
+        <div class="site-footer__col">
+          <h3>产品</h3>
+          <ul>
+            <li><a href="products.html">产品总览</a></li>
+            <li><a href="h770.html">HyicoFly-H770</a></li>
+            <li><a href="technology.html">H 型构架技术</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>软件</h3>
+          <ul>
+            <li><a href="platform.html">HyicoPlatform</a></li>
+            <li><a href="hgc.html">HyicoGroundControl</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>公司</h3>
+          <ul>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="news.html">新闻动态</a></li>
+            <li><a href="careers.html">加入我们</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3>支持</h3>
+          <ul>
+            <li><a href="faq.html">常见问题</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <span data-content="site.copyright">© 2026 Hyico. 保留所有权利。</span>
+      <div class="site-footer__legal">
+        <a href="contact.html">联系我们</a>
+        <a href="faq.html">常见问题</a>
+        <a href="careers.html">加入我们</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/core/dom.js"></script>
+<script src="assets/js/core/content.js"></script>
+<script src="assets/js/core/theme.js"></script>
+<script src="assets/js/core/nav.js"></script>
+<script src="assets/js/components/reveal.js"></script>
+<script src="assets/js/pages/list.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

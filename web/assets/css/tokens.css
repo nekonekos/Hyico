@@ -1,0 +1,219 @@
+/* ==========================================================================
+   Hyico · Design Tokens
+   --------------------------------------------------------------------------
+   全站唯一的视觉变量来源。改主题、改色、改字号、改节奏，只动这一个文件。
+   品牌色阶由客户给定；带 * 标记的为在给定色基础上派生的中间/加深色。
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  /* ---------- 品牌色阶 ---------- */
+  --mint-25:  #F4F8F6;  /* * 提亮底 */
+  --mint-50:  #EBF1EF;  /* 画布 */
+  --mint-100: #C9DBD5;  /* 描边 / 分隔 */
+  --mint-200: #9EBDB4;  /* 次级强调 */
+  --mint-400: #578E7D;  /* 主强调 */
+  --mint-500: #446F62;  /* 正文次级 / 强调深 */
+  --mint-600: #325249;  /* 深色块 / 深色描边 */
+  --mint-800: #213630;  /* 正文 / 深色画布 */
+  --mint-900: #1A2723;  /* * 深色主题画布 */
+  --mint-950: #141E1A;  /* * 最深，阴影与页脚 */
+  --white: #FFFFFF;
+
+  /* ---------- 字体 ---------- */
+  /* 西文优先，中文回退；避免 Windows 上中文像素字体的西文字形拖后腿 */
+  --font-sans: system-ui, -apple-system, "Segoe UI Variable Text", "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "PingFang SC", "HarmonyOS Sans SC",
+    "MiSans", "Source Han Sans SC", "Noto Sans SC", "Microsoft YaHei UI",
+    "Microsoft YaHei", sans-serif;
+  /* 参数、编号、代码：等宽 + 表格数字，是"工程感"的主要来源 */
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Cascadia Code",
+    "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --font-display: var(--font-sans);
+
+  /* 可选：自托管显示字体。把 woff2 放进 assets/fonts/ 后取消注释即可启用，
+     全站会自动改用品牌字体，无需改其它任何文件。
+  @font-face {
+    font-family: "Hyico Display";
+    src: url("../fonts/hyico-display.woff2") format("woff2");
+    font-weight: 300 800;
+    font-display: swap;
+  }
+  */
+
+  --fs-xs:   0.75rem;    /* 12 */
+  --fs-sm:   0.8125rem;  /* 13 */
+  --fs-base: 1rem;       /* 16 */
+  --fs-lg:   1.0625rem;  /* 17 */
+  --fs-xl:   1.25rem;    /* 20 */
+  --fs-2xl:  1.5rem;     /* 24 */
+  --fs-display: clamp(2.25rem, 1.3rem + 3.8vw, 4rem);
+  --fs-h2:      clamp(1.625rem, 1.15rem + 1.9vw, 2.5rem);
+  --fs-h3:      clamp(1.125rem, 1rem + 0.55vw, 1.4375rem);
+  --fs-lede:    clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+
+  --lh-tight: 1.12;
+  --lh-snug:  1.35;
+  --lh-base:  1.75;
+  --ls-tight: -0.022em;
+  --ls-wide:  0.1em;
+
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semi: 600;
+  --fw-bold: 700;
+
+  /* ---------- 间距节奏 ---------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-20: 5rem;
+  --s-24: 6rem;
+
+  --wrap: 1200px;
+  --wrap-narrow: 780px;
+  --gutter: clamp(1.25rem, 0.7rem + 2vw, 2.5rem);
+  --section-y: clamp(4rem, 2.4rem + 6vw, 7.5rem);
+  --header-h: 62px;
+
+  /* ---------- 圆角 ---------- */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-full: 999px;
+
+  /* ---------- 动效 ---------- */
+  --ease:     cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-1: 120ms;
+  --dur-2: 220ms;
+  --dur-3: 420ms;
+  --dur-4: 800ms;
+
+  /* ---------- 层级 ---------- */
+  --z-base: 1;
+  --z-sticky: 50;
+  --z-drawer: 80;
+  --z-skip: 100;
+
+  /* ================= 浅色主题（默认） ================= */
+  --bg:            var(--mint-50);
+  --bg-sub:        var(--mint-25);
+  --surface:       var(--white);
+  --surface-2:     var(--mint-25);
+  --surface-sunk:  var(--mint-100);
+  --border:        var(--mint-100);
+  --border-strong: var(--mint-200);
+
+  --text:   var(--mint-800);
+  --text-2: var(--mint-500);
+  --text-3: var(--mint-400); /* 仅用于 ≥18px 或装饰性信息 */
+
+  --accent:          var(--mint-400);
+  --accent-strong:   var(--mint-500);
+  --accent-soft:     var(--mint-100);
+  --accent-contrast: var(--white);
+  --focus:           var(--mint-500);
+
+  --line: rgba(87, 142, 125, 0.14);
+  --glass: rgba(235, 241, 239, 0.78);
+
+  --shadow-1: 0 1px 2px rgba(33, 54, 48, 0.05);
+  --shadow-2: 0 4px 14px -6px rgba(33, 54, 48, 0.16);
+  --shadow-3: 0 20px 44px -24px rgba(33, 54, 48, 0.28);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* ================= 深色主题 ================= */
+[data-theme="dark"] {
+  --bg:            var(--mint-900);
+  --bg-sub:        var(--mint-950);
+  --surface:       var(--mint-800);
+  --surface-2:     #263E37;
+  --surface-sunk:  var(--mint-950);
+  --border:        var(--mint-600);
+  --border-strong: var(--mint-500);
+
+  --text:   var(--mint-50);
+  --text-2: var(--mint-200);
+  --text-3: var(--mint-400);
+
+  --accent:          var(--mint-200);
+  --accent-strong:   var(--mint-100);
+  --accent-soft:     rgba(158, 189, 180, 0.14);
+  --accent-contrast: var(--mint-900);
+  --focus:           var(--mint-200);
+
+  --line: rgba(158, 189, 180, 0.12);
+  --glass: rgba(26, 39, 35, 0.78);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 4px 16px -6px rgba(0, 0, 0, 0.45);
+  --shadow-3: 0 22px 48px -26px rgba(0, 0, 0, 0.6);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   .surface-dark —— 在浅色主题里插入的深色区块（用于制造页面节奏）
+   它自己重新声明一整套局部变量，因此内部组件无需任何特殊处理即可正确反色。
+   ========================================================================== */
+.surface-dark {
+  --bg:            var(--mint-800);
+  --bg-sub:        var(--mint-950);
+  --surface:       var(--mint-600);
+  --surface-2:     #2C4740;
+  --surface-sunk:  var(--mint-950);
+  --border:        var(--mint-600);
+  --border-strong: var(--mint-500);
+
+  --text:   var(--mint-50);
+  --text-2: var(--mint-200);
+  --text-3: var(--mint-400);
+
+  --accent:          var(--mint-200);
+  --accent-strong:   var(--mint-100);
+  --accent-soft:     rgba(158, 189, 180, 0.16);
+  --accent-contrast: var(--mint-800);
+  --focus:           var(--mint-100);
+
+  --line: rgba(158, 189, 180, 0.14);
+  --glass: rgba(33, 54, 48, 0.78);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --shadow-2: 0 4px 16px -6px rgba(0, 0, 0, 0.4);
+  --shadow-3: 0 22px 48px -26px rgba(0, 0, 0, 0.55);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* 深色主题下，深色区块要略微提亮才能与画布区分开 */
+[data-theme="dark"] .surface-dark {
+  --bg:      #263E37;
+  --surface: #2C4740;
+  background-color: var(--bg);
+}
+
+/* ==========================================================================
+   动效降级：系统要求减少动态效果时，全站动效归零
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0.01ms;
+    --dur-2: 0.01ms;
+    --dur-3: 0.01ms;
+    --dur-4: 0.01ms;
+  }
+}

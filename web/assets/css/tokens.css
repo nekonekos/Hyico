@@ -133,6 +133,10 @@
   --shadow-2: 0 4px 14px -6px rgba(33, 54, 48, 0.16);
   --shadow-3: 0 20px 44px -24px rgba(33, 54, 48, 0.28);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* 实物照片的"摄影棚"底。照片是透明底 WebP，黑色碳纤维件必须放在浅色底上才看得清，
+     所以深浅两个主题都用浅色底，深色模式下它成为有意为之的"照片板"。 */
+  --photo-bg: radial-gradient(ellipse 78% 68% at 50% 36%, #FFFFFF 0%, #EDF3F1 52%, #D9E5E1 100%);
 }
 
 /* ================= 深色主题 ================= */
@@ -162,6 +166,9 @@
   --shadow-2: 0 4px 16px -6px rgba(0, 0, 0, 0.45);
   --shadow-3: 0 22px 48px -26px rgba(0, 0, 0, 0.6);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  /* 深色模式下照片板略微压暗，避免整块亮色过于刺眼 */
+  --photo-bg: radial-gradient(ellipse 78% 68% at 50% 36%, #F2F7F5 0%, #C9DBD5 54%, #A8C5BC 100%);
 }
 
 /* ==========================================================================
@@ -194,6 +201,9 @@
   --shadow-2: 0 4px 16px -6px rgba(0, 0, 0, 0.4);
   --shadow-3: 0 22px 48px -26px rgba(0, 0, 0, 0.55);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  /* 深色区块里的照片板同样是浅色 */
+  --photo-bg: radial-gradient(ellipse 78% 68% at 50% 36%, #FFFFFF 0%, #EDF3F1 52%, #D9E5E1 100%);
 
   background-color: var(--bg);
   color: var(--text);

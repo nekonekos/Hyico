@@ -80,11 +80,21 @@ web/                          ← 部署目录（Cloudflare Pages 的构建输�
 │   │   └── main.js           统一引导
 │   └── img/
 │       ├── favicon.svg
-│       └── og-default.svg    社交分享图（建议另导出一份 PNG，见下方"待办"）
+│       ├── og-default.svg    社交分享图（建议另导出一份 PNG，见下方"待办"）
+│       └── photos/           ← 实拍照片（已压缩，随站点一起部署）
 │
 ├── sitemap.xml
 ├── robots.txt
 └── _headers                  Cloudflare Pages 响应头（缓存与安全策略）
+```
+
+仓库根目录还有两项**不参与部署**的内容：
+
+```
+assets-src/                   ← 源文件，不在 web/ 里，不会上传
+└── photos/                   6 张实拍原图（共 5.15 MB），压缩前的留档
+
+dev-server.js                 本地预览服务器（零依赖 Node）
 ```
 
 ---
@@ -151,6 +161,23 @@ h770.html    ↔  h770.json
 
 首页的「最新动态」会自动取 `news.json` 的前 3 条，不需要额外改动。
 
+**新增 / 替换一张实拍照片**
+
+1. 把原图放进 `assets-src/photos/`（这里不部署，只是留档）。
+2. 处理成透明背景的 WebP，长边控制在 1400px 以内，存为 `web/assets/img/photos/<name>.webp`。目标是单张 **≤100 KB**（现有 6 张平均 54 KB）。
+3. 用 `.photo` 组件插入，**一定要把真实像素尺寸写进 `width` / `height`**，否则懒加载时会出现布局位移：
+
+   ```html
+   <figure class="photo">
+     <div class="photo__frame">
+       <img src="assets/img/photos/<name>.webp" alt="" width="675" height="900" loading="lazy" decoding="async">
+     </div>
+     <figcaption><span>图注</span><span class="photo__tag">实拍</span></figcaption>
+   </figure>
+   ```
+
+   `alt` 写清楚图里能看到什么（型号、接口、丝印），不要写“照片”两个字就完事——这是图片对无障碍用户的全部信息。
+
 **新增一个职位**
 → 同理：`careers.json` 加条目 + 新建 `careers/<slug>.json`（`duties` / `requirements` / `bonus` / `offer` 是字符串数组）。
 
@@ -190,9 +217,9 @@ h770.html    ↔  h770.json
 
 H 型构架是贯穿全站的图形语言：logo、章节标记、图纸插图、分隔符、404 页面都基于同一个形状。
 
-### 技术图纸
+### 技术图纸与实拍照片
 
-全站插图**没有一张位图**，都是内联 SVG，因此能跟随深浅色主题自动换色。图纸按用途分开，避免重复：
+插图的默认形态是**内联 SVG**——没有位图，因此能跟随深浅色主题自动换色。图纸按用途分开，避免重复：
 
 | 位置 | 图纸 | 说明 |
 | --- | --- | --- |
@@ -217,6 +244,40 @@ H 型构架是贯穿全站的图形语言：logo、章节标记、图纸插图�
 ```
 
 图纸坐标与实物成比例（首页俯视图 1 单位 = 2.5mm，中心舱细节图 1 单位 = 1mm），因此标注的 770mm 轴距、25mm 中梁、80mm 中心板都是按比例画出来的，不是随手写的文字。
+
+### 实拍照片
+
+图纸负责说明结构关系，照片负责说明用料与做工，两者互补。全站另有 6 张实拍，位置如下：
+
+| 位置 | 文件 | 内容 |
+| --- | --- | --- |
+| 首页 · 实拍 | `h770-overview.webp` | 整机 45° 俯视，H 型机架、四支 1855 折叠桨、两组 6S2P 电池 |
+| 首页 · 实拍 | `motor-6010.webp` | 6010 电机与铝合金电机座，可见铜线绕组 |
+| 首页 · 实拍 | `arm-end.webp` | 机臂末端：电机 + 折叠机构 + ESC 信号线 |
+| 首页 · 实拍 | `esc-60a.webp` | 四路 60A 电调与 14AWG 线、香蕉插头 |
+| `h770.html` 结构细节 | `h770-center-board.webp` | 中心板俯视：自制分电板、飞控、光流、数传、XT60 |
+| `technology.html` 材料与工艺 | `carbon-t-joint.webp` | 铝合金三通特写，20mm 机臂与 25mm 中梁的交汇点 |
+
+**压缩**：原图共 5.15 MB，用浏览器 canvas 重新编码为 WebP 后降至 **321 KB**（约 -94%），透明背景保留。原图完整留档在 `assets-src/photos/`，不随站点部署。压缩产物尺寸已写进 `<img>` 的 `width` / `height`，加上 `loading="lazy"`，因此不会造成布局位移。
+
+**`.photo` 组件**（`components.css` 第 20 节）：
+
+```html
+<figure class="photo">
+  <div class="photo__frame">
+    <img src="assets/img/photos/x.webp" alt="…" width="675" height="900" loading="lazy" decoding="async">
+  </div>
+  <figcaption>
+    <span data-content="key.caption">默认图注</span>
+    <span class="photo__tag">实拍</span>
+  </figcaption>
+</figure>
+```
+
+- 默认竖版 3:4，加 `.photo--wide` 变横版 4:3。`object-fit: contain`，不会裁切。
+- 图片底下垫的是 `--photo-bg` 令牌：一块**浅色渐变摄影台**。它在浅色和深色两套主题下都是浅色——因为照片里的碳纤维和黑色阳极氧化件是透明的，放在深色背景上会失去轮廓。深色模式下靠底板与卡片边框形成对比。
+- 图注栏用 `var(--surface)`，自动跟随所在主题（包括嵌在 `.surface-dark` 区块里时）。
+- 加 `data-content` 就能被同名 JSON 覆盖，和无障碍文本的写法完全一致。
 
 ---
 
@@ -294,7 +355,8 @@ H 型构架是贯穿全站的图形语言：logo、章节标记、图纸插图�
 
 ## 已验证的行为
 
-- 全部 21 个页面 / 状态：控制台零错误、零警告、零 404
+- 全部 14 个页面 × 浅色/深色两套主题（共 28 次加载）：控制台零错误、零页面异常、零 404，每页恰好一个 `h1`，无横向溢出
+- 4 个新闻 slug 与 4 个职位 slug 的详情页全部正常解析，列表页链接与 `news/`、`careers/` 下的文件名一致
 - 内容键覆盖：除详情页模板的条目字段外，全站 `data-content` 键 100% 有 JSON 对应（用 `?content-debug=1` 逐页核对）
 - 深浅色主题在全部页面正常，切换后持久化并跨页面保持
 - 响应式断点：320 / 375 / 768 / 1024 / 1440；375px 下无横向溢出，抽屉可开合、焦点落入抽屉
@@ -307,10 +369,13 @@ H 型构架是贯穿全站的图形语言：logo、章节标记、图纸插图�
 
 ### 性能预算（实测）
 
-| | 原始 | gzip | brotli |
+| | 原始 | gzip（实测） | brotli（估算） |
 | --- | --- | --- | --- |
-| CSS（5 个文件） | 65.7 KB | 16.3 KB | **13.4 KB** |
-| JS（首页 9 个文件） | 41.3 KB | 15.4 KB | **12.5 KB** |
-| 首页首屏合计（HTML + 内容 JSON + CSS + JS） | 146.4 KB | **43.8 KB** | — |
+| CSS（5 个文件） | 70.9 KB | 18.0 KB | ≈14.5 KB |
+| JS（首页 9 个文件） | 41.3 KB | 14.2 KB | ≈11.5 KB |
+| 首页首屏合计（HTML + 内容 JSON + CSS + JS，17 个请求） | 158.1 KB | **45.8 KB** | ≈37 KB |
+| 实拍照片（全站 6 张，全部在首屏以下） | 321 KB | — | — |
 
-Cloudflare Pages 会自动启用 brotli。全站零外部请求、零第三方字体、零图片文件（所有插图都是内联 SVG 或 CSS）。
+gzip 列为实测值（`.NET GZipStream`）；brotli 列按同类文本通常再小 20% 左右估算，Cloudflare Pages 会自动启用 brotli，以线上实测为准。
+
+全站零外部请求、零第三方字体；插图是内联 SVG，不产生额外请求。照片全部 `loading="lazy"` 且位于首屏以下，不占用首屏字节数。

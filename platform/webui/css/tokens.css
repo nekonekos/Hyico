@@ -1,0 +1,237 @@
+/* ==========================================================================
+   HyicoPlatform · Design Tokens
+   --------------------------------------------------------------------------
+   这是主站（web/assets/css/tokens.css）令牌体系的**子集 + 扩展**，不是复制。
+
+   为什么不直接复用主站那套：
+   主站是营销页，用的是 Apple 式参数——17px 正文、1.6 行高、#6E6E73 次要文字
+   （4.68:1）。那套参数在营销页很好，但搬到监控台上会**反过来伤可读性**：
+   行距太大导致一屏装不下几行遥测、灰字对仪表读数偏浅。
+
+   所以这里分两层：
+     1)「外框层」——导航、按钮、卡片、面板外观，沿用主站语言，视觉统一
+     2)「数据层」——数值、表格、告警，单独一套更紧、对比更高的令牌
+
+   所有状态色都分「文字色」与「填充色」两档：
+   文字色一律 ≥4.5:1（实际多数 ≥5:1），填充色只用于圆点/色块/边框。
+   直接用 fill 色当文字色是监控台最常见的可读性问题。
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  /* ---------- 品牌色阶（与主站同源） ---------- */
+  --mint-25:  #F4F8F6;
+  --mint-50:  #EBF1EF;
+  --mint-100: #C9DBD5;
+  --mint-200: #9EBDB4;
+  --mint-400: #578E7D;
+  --mint-500: #446F62;
+  --mint-600: #325249;
+  --mint-800: #213630;
+  --mint-900: #1A2723;
+  --mint-950: #141E1A;
+  --white: #FFFFFF;
+
+  /* ---------- 中性灰阶（与主站同源） ---------- */
+  --gray-50:  #F5F5F7;
+  --gray-100: #E8E8ED;
+  --gray-200: #D2D2D7;
+  --gray-300: #A1A1A6;
+  --gray-400: #86868B;
+  --gray-500: #6E6E73;
+  --gray-600: #424245;
+  --gray-700: #2A2A2C;
+  --gray-800: #1D1D1F;
+  --black:   #000000;
+
+  /* ---------- 字体 ---------- */
+  /* Inter 由主站自托管（web/assets/fonts/）。此目录独立部署，若要把字面
+     一并搬过来，把 woff2 放进 fonts/ 并在此加 @font-face 即可；
+     在补齐之前，非 Apple 平台会回落到 Segoe UI / 系统字体。 */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI Variable Text",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC",
+    "HarmonyOS Sans SC", "MiSans", "Source Han Sans SC", "Noto Sans SC",
+    "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "SFMono-Regular", "Cascadia Mono",
+    "Cascadia Code", Consolas, Menlo, "Liberation Mono", monospace;
+
+  /* ---------- 外框层字号（主站语言） ---------- */
+  --fs-xs:   0.75rem;    /* 12 */
+  --fs-sm:   0.8125rem;  /* 13 */
+  --fs-base: 0.9375rem;  /* 15 · 监控台基准比主站 17px 密一档 */
+  --fs-lg:   1.0625rem;  /* 17 */
+  --fs-xl:   1.25rem;    /* 20 */
+  --fs-2xl:  1.5rem;     /* 24 */
+
+  --lh-tight: 1.2;
+  --lh-snug:  1.35;
+  --lh-base:  1.55;
+
+  --ls-tight: -0.015em;
+  --ls-body:  -0.008em;
+
+  /* ---------- 数据层字号与行高（更紧，为了一屏装下更多读数） ---------- */
+  --data-fs:        0.8125rem;  /* 13 · 键名与表格正文 */
+  --data-fs-value:  0.875rem;   /* 14 · 数值 */
+  --data-fs-lg:     1.125rem;   /* 18 · 关键读数（电量、高度） */
+  --data-fs-xl:     1.75rem;    /* 28 · 统计条大数字 */
+  --data-lh:        1.4;
+  --data-lh-tight:  1.15;
+
+  /* ---------- 间距 ---------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+
+  --wrap: 1400px;          /* 监控台要宽：仪表盘信息密度高 */
+  --gutter: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  --header-h: 56px;
+
+  /* ---------- 圆角 ---------- */
+  --r-xs: 6px;
+  --r-sm: 8px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-tile: 14px;
+  --r-full: 999px;
+
+  /* ---------- 动效 ---------- */
+  --ease:     cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 400ms;
+
+  /* ---------- 层级 ---------- */
+  --z-base: 1;
+  --z-sticky: 50;
+  --z-toast: 90;
+}
+
+/* ==========================================================================
+   浅色主题
+   --------------------------------------------------------------------------
+   数据层对比度实测（相对白底）：
+     --data-text   #1D1D1F ≈ 17.4:1   数值本体
+     --data-label  #424245 ≈ 10.0:1   键名（主站同级灰 #6E6E73 只有 4.68:1）
+     --data-faint  #6E6E73 ≈  4.7:1   仅用于非关键的辅助说明
+     --ok-text     #15803D ≈  5.0:1   （fill 色 #16A34A 只有 3.3:1，不能当字用）
+     --warn-text   #B45309 ≈  5.0:1   （#D97706 只有 3.2:1）
+     --danger-text #DC2626 ≈  4.8:1
+     --info-text   #1D4ED8 ≈  6.7:1   （#3B82F6 只有 3.7:1）
+   ========================================================================== */
+:root,
+[data-theme="light"] {
+  --bg:            var(--white);
+  --bg-sub:        var(--gray-50);
+  --surface:       var(--white);
+  --surface-2:     var(--gray-50);
+  --border:        var(--gray-100);
+  --border-strong: var(--gray-200);
+
+  --text:   var(--gray-800);
+  --text-2: var(--gray-500);
+  --text-3: var(--gray-400);
+
+  --brand:          var(--mint-400);
+  --brand-strong:   var(--mint-500);
+  --brand-soft:     var(--mint-50);
+  --on-brand:       var(--white);
+  --focus:          var(--mint-500);
+
+  /* 数据层 —— 对比度优先 */
+  --data-text:   var(--gray-800);
+  --data-label:  var(--gray-600);
+  --data-faint:  var(--gray-500);
+  --data-line:   var(--gray-100);
+  --data-zebra:  var(--gray-50);
+
+  /* 状态色：文字档（≥4.5:1） */
+  --ok-text:     #15803D;
+  --warn-text:   #B45309;
+  --danger-text: #DC2626;
+  --info-text:   #1D4ED8;
+  --offline-text: var(--gray-500);
+  /* 状态色：填充档（圆点、色块、左边框、浅底） */
+  --ok:          #16A34A;
+  --warn:        #D97706;
+  --danger:      #DC2626;
+  --info:        #3B82F6;
+  --offline:     #94A3B8;
+  --ok-soft:     #E7F7EE;
+  --warn-soft:   #FDF3E3;
+  --danger-soft: #FDECEC;
+  --info-soft:   #EAF1FF;
+
+  --glass: rgba(255, 255, 255, 0.72);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-2: 0 4px 16px -8px rgba(0, 0, 0, 0.10);
+  --shadow-3: 0 16px 40px -24px rgba(0, 0, 0, 0.18);
+}
+
+/* ==========================================================================
+   深色主题
+   --------------------------------------------------------------------------
+   深色下状态色改为亮档，相对纯黑画布实测：
+     --data-label #A1A1A6 ≈ 8.2:1 · --ok-text #4ADE80 ≈ 12.1:1
+     --warn-text  #FBBF24 ≈ 12.6:1 · --info-text #60A5FA ≈ 8.3:1
+   ========================================================================== */
+[data-theme="dark"] {
+  --bg:            var(--black);
+  --bg-sub:        var(--gray-800);
+  --surface:       var(--gray-800);
+  --surface-2:     var(--gray-700);
+  --border:        var(--gray-600);
+  --border-strong: var(--gray-600);
+
+  --text:   var(--gray-50);
+  --text-2: var(--gray-400);
+  --text-3: var(--gray-400);
+
+  --brand:          var(--mint-200);
+  --brand-strong:   var(--mint-100);
+  --brand-soft:     rgba(158, 189, 180, 0.16);
+  --on-brand:       var(--gray-800);
+  --focus:          var(--mint-200);
+
+  --data-text:   var(--gray-50);
+  --data-label:  var(--gray-300);
+  --data-faint:  var(--gray-400);
+  --data-line:   var(--gray-600);
+  --data-zebra:  rgba(255, 255, 255, 0.03);
+
+  --ok-text:     #4ADE80;
+  --warn-text:   #FBBF24;
+  --danger-text: #F87171;
+  --info-text:   #60A5FA;
+  --offline-text: var(--gray-400);
+  --ok:          #22C55E;
+  --warn:        #F59E0B;
+  --danger:      #EF4444;
+  --info:        #60A5FA;
+  --offline:     #64748B;
+  --ok-soft:     rgba(34, 197, 94, 0.16);
+  --warn-soft:   rgba(245, 158, 11, 0.16);
+  --danger-soft: rgba(239, 68, 68, 0.16);
+  --info-soft:   rgba(96, 165, 250, 0.16);
+
+  --glass: rgba(0, 0, 0, 0.72);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 4px 16px -8px rgba(0, 0, 0, 0.6);
+  --shadow-3: 0 16px 40px -24px rgba(0, 0, 0, 0.7);
+}
+
+/* 系统要求减少动态效果时，全站动效归零 */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0.01ms;
+    --dur-2: 0.01ms;
+    --dur-3: 0.01ms;
+  }
+}

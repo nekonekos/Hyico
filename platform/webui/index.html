@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HyicoPlatform · 无人机远程监控与运营平台</title>
+    <script>
+        (function () {
+            'use strict';
+            var token = localStorage.getItem('hyico-token');
+            if (token) window.location.replace('./dashboard.html');
+            else window.location.replace('./login.html');
+        })();
+    </script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,238 @@
+/* ==========================================================================
+ * HyicoPlatform 基础样式：导航、按钮、面板、表格、提示。
+ *
+ * 颜色与字号全部来自 ./tokens.css（在 HTML 里先于本文件引入）。
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 变量别名层
+ * --------------------------------------------------------------------------
+ * 本文件与 dashboard / drone / auth 三个文件的正文里用的是旧变量名
+ * （--card、--text-soft、--radius…）。真正的取值来源是 tokens.css，这里只做
+ * 名称映射，免得为了改名去动四个文件里的几百处引用。
+ *
+ * 新写样式请直接用 tokens.css 里的名字（--surface / --data-label / --r-lg…）；
+ * 这些别名是给既有代码用的过渡层。
+ * -------------------------------------------------------------------------- */
+:root {
+    --bg-soft:    var(--bg-sub);
+    --card:       var(--surface);
+    --text-soft:  var(--data-label);   /* 数据区键名，10:1——不是主站那个 4.68:1 */
+    --text-faint: var(--data-faint);
+    --shadow:     var(--shadow-1);
+    --shadow-lg:  var(--shadow-3);
+    --radius:     var(--r-lg);
+    --radius-sm:  var(--r-sm);
+    --mono:       var(--font-mono);
+    /* --bg / --border / --text / --brand / --brand-strong / --brand-soft /
+       --ok / --warn / --danger / --info / --offline 同名同义，
+       tokens.css 里已经定义，这里不再重复。 */
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: var(--fs-base);
+    line-height: var(--lh-base);
+    letter-spacing: var(--ls-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: var(--brand-strong); text-decoration: none; }
+a:hover { color: var(--text); }
+
+/* ------------------------------------------------------------------ nav */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 22px;
+    height: 58px;
+    background: color-mix(in srgb, var(--card) 86%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+.nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--text);
+}
+.nav__brand:hover { color: var(--text); }
+.nav__brand-dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--brand), var(--mint-200));
+    box-shadow: 0 0 0 4px var(--brand-soft);
+}
+.nav__links { display: flex; gap: 4px; flex: 1; }
+.nav__link {
+    padding: 7px 13px;
+    border-radius: 8px;
+    color: var(--text-soft);
+    font-weight: 500;
+}
+.nav__link:hover { color: var(--text); background: var(--bg-soft); }
+.nav__link.is-active { color: var(--brand); background: var(--brand-soft); }
+.nav__right { display: flex; align-items: center; gap: 10px; }
+.nav__user {
+    font-size: 13px; color: var(--text-soft);
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px;
+}
+
+/* --------------------------------------------------------------- buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s, transform .05s;
+    background: var(--bg-soft);
+    color: var(--text);
+}
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn--primary { background: var(--brand); color: #fff; }
+.btn--primary:hover { background: var(--brand-strong); }
+.btn--ghost { background: transparent; border-color: var(--border); color: var(--text-soft); }
+.btn--ghost:hover { color: var(--text); border-color: var(--text-faint); }
+.btn--block { width: 100%; }
+.btn--sm { padding: 6px 12px; font-size: 13px; }
+
+/* ---------------------------------------------------------------- theme */
+.theme-icon {
+    width: 17px; height: 17px; border-radius: 50%;
+    display: inline-block;
+    background: radial-gradient(circle at 60% 35%, #fbbf24 0 30%, transparent 32%),
+                transparent;
+    border: 2px solid var(--text-soft);
+    position: relative;
+}
+[data-theme="dark"] .theme-icon {
+    background: radial-gradient(circle at 60% 35%, #e2e8f0 0 100%);
+    border-color: #e2e8f0;
+    clip-path: polygon(50% 0, 65% 20%, 100% 35%, 80% 65%, 50% 100%, 20% 65%, 0 35%, 35% 20%);
+}
+
+/* ----------------------------------------------------------------- page */
+.page {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 26px 22px 64px;
+}
+.page__head { margin-bottom: 20px; }
+.page__title { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -.01em; }
+.page__subtitle { margin: 4px 0 0; color: var(--text-soft); font-size: 14px; }
+.page__back {
+    display: inline-block; margin-bottom: 10px;
+    color: var(--text-soft); font-size: 13px; font-weight: 500;
+}
+.page__back:hover { color: var(--brand); }
+
+/* ---------------------------------------------------------------- panel */
+.panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+}
+.panel__title {
+    margin: 0 0 14px;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.panel__title::before {
+    content: "";
+    width: 4px; height: 16px; border-radius: 2px;
+    background: var(--brand);
+}
+
+/* ------------------------------------------------------------------- kv */
+.kv { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 18px; }
+.kv__row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 2px; border-bottom: 1px dashed var(--border);
+}
+.kv__key { color: var(--text-soft); font-size: 13px; }
+.kv__val { font-weight: 600; font-size: 14px; text-align: right; }
+.kv__val--ok { color: var(--ok); }
+.kv__val--bad { color: var(--danger); }
+.kv__val--warn { color: var(--warn); }
+.kv__val--mono { font-family: var(--mono); }
+
+/* ---------------------------------------------------------------- badge */
+.badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 10px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; line-height: 1.5;
+}
+.badge--ok { background: var(--ok-soft); color: var(--ok); }
+.badge--warn { background: var(--warn-soft); color: var(--warn); }
+.badge--danger { background: var(--danger-soft); color: var(--danger); }
+.badge--info { background: var(--brand-soft); color: var(--info); }
+.badge--muted { background: var(--bg-soft); color: var(--text-faint); }
+.badge__dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+
+/* ---------------------------------------------------------------- table */
+.table-wrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.table th, .table td {
+    text-align: left; padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+.table th { color: var(--text-soft); font-weight: 600; }
+.table td { color: var(--text); }
+.table tbody tr:hover { background: var(--bg-soft); }
+
+/* ---------------------------------------------------------------- toast */
+.toast-host {
+    position: fixed; z-index: 999; right: 18px; bottom: 18px;
+    display: flex; flex-direction: column; gap: 10px; max-width: min(360px, 88vw);
+}
+.toast {
+    background: var(--card); border: 1px solid var(--border);
+    border-left: 4px solid var(--info);
+    padding: 12px 16px; border-radius: 10px; box-shadow: var(--shadow-lg);
+    font-size: 14px; color: var(--text);
+    animation: toast-in .2s ease;
+}
+.toast--error { border-left-color: var(--danger); }
+.toast--success { border-left-color: var(--ok); }
+.toast--out { opacity: 0; transform: translateY(6px); transition: all .3s ease; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(8px); } }
+
+/* ------------------------------------------------------------- skeleton */
+.skeleton {
+    border-radius: var(--radius-sm);
+    background: linear-gradient(90deg, var(--bg-soft) 25%, var(--card) 50%, var(--bg-soft) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.3s infinite;
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+@media (max-width: 640px) {
+    .page { padding: 18px 14px 56px; }
+    .nav { padding: 0 14px; gap: 12px; }
+    .nav__user { display: none; }
+}

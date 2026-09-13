@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>登录 · HyicoPlatform</title>
+
+    <script>
+    /* 首屏防闪白：必须在任何样式表之前同步执行。
+       主站（web/）用同一套做法，主题存储键统一为 hyico-theme。
+       不能只在 DOMContentLoaded 里应用主题——那会先按亮色画一帧再切，闪一下。 */
+    (function () {
+        document.documentElement.classList.add('has-js');
+        try {
+            var saved = localStorage.getItem('hyico-theme');
+            var dark = saved ? saved === 'dark'
+                             : window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        } catch (e) { /* 隐私模式下静默忽略 */ }
+    })();
+    </script>
+
+    <link rel="stylesheet" href="./css/tokens.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/auth.css" />
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-card">
+            <div class="auth-card__brand">
+                <span class="auth-card__dot"></span>
+                <span id="authAppName">HyicoPlatform</span>
+            </div>
+            <p class="auth-card__tagline" id="authTagline">无人机运营监管平台</p>
+
+            <form id="loginForm" novalidate>
+                <label class="field">
+                    <span class="field__label">后端服务器地址<span class="field__optional">（可选）</span></span>
+                    <input class="field__input" id="serverInput" type="text"
+                           placeholder="https://api.example.com:8000 或 IP:端口" />
+                    <span class="field__hint">留空则使用当前站点代理；如需直连可填 https:// 完整地址</span>
+                </label>
+
+                <label class="field">
+                    <span class="field__label">用户名</span>
+                    <input class="field__input" id="usernameInput" type="text"
+                           placeholder="请输入用户名" autocomplete="username" required />
+                </label>
+
+                <label class="field">
+                    <span class="field__label">密码</span>
+                    <input class="field__input" id="passwordInput" type="password"
+                           placeholder="请输入密码" autocomplete="current-password" required />
+                </label>
+
+                <div class="auth-card__error" id="loginError" hidden></div>
+
+                <button class="btn btn--primary btn--block" id="loginBtn" type="submit">
+                    登 录
+                </button>
+            </form>
+
+            <p class="auth-card__note">账号由管理员预建，本平台不开放注册。</p>
+        </div>
+
+        <div class="auth-page__footer">
+            <button id="themeToggle" class="btn btn--ghost" type="button">
+                <span class="theme-icon" aria-hidden="true"></span> 切换主题
+            </button>
+        </div>
+    </div>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/auth.js"></script>
+</body>
+</html>

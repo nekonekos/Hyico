@@ -3,6 +3,31 @@
 # 放在 web/ 根目录，Cloudflare Pages 会自动读取，无需 Workers。
 # 文档：https://developers.cloudflare.com/pages/configuration/headers/
 # ==========================================================================
+#
+# ⚠️ 改 CSS / JS 之后必须做的一件事
+# --------------------------------------------------------------------------
+# 下面 /assets/css/* 与 /assets/js/* 是 max-age=31536000, immutable。
+# 而这个项目没有构建步骤，文件名**不含内容哈希**，所以：
+#
+#   如果只改了 CSS 或 JS，浏览器和 Cloudflare 边缘节点会继续用旧文件，
+#   即使部署了新版、即使开无痕窗口也一样看不到变化。
+#
+# 因此每次改完 CSS/JS，必须把 HTML 里所有资源引用的 ?v= 升一位：
+#
+#   assets/css/tokens.css?v=20260913   →   assets/css/tokens.css?v=20260914
+#
+# 一条命令搞定（在仓库根目录执行）：
+#   $v='20260914'; Get-ChildItem web\*.html | ForEach-Object {
+#     $p=$_.FullName; $c=[IO.File]::ReadAllText($p,[Text.Encoding]::UTF8)
+#     $c=[regex]::Replace($c,'(\?v=)\d+','$1'+$v)
+#     [IO.File]::WriteAllText($p,$c,(New-Object Text.UTF8Encoding($false))) }
+#
+# HTML 与 JSON 是 max-age=0, must-revalidate，所以升版本号会立刻生效。
+#
+# 这个坑真的踩过：改完 CSS 部署上线，页面文案更新了、样式却还是旧的，
+# 就是因为 HTML 会重新校验、而 CSS 被 immutable 锁了一年。
+#
+# ==========================================================================
 
 /*
   X-Content-Type-Options: nosniff
@@ -22,7 +47,8 @@
 /*.json
   Cache-Control: public, max-age=0, must-revalidate
 
-# 静态资源长期缓存（文件名带变更时建议加版本后缀或改用哈希路径）
+# 静态资源长期缓存。文件名没有哈希，所以依赖 HTML 里的 ?v= 做失效——
+# 改完这些文件务必按上方说明升版本号，否则改动不会可见。
 /assets/css/*
   Cache-Control: public, max-age=31536000, immutable
 

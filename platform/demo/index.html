@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HyicoPlatform · 交互演示</title>
+<meta name="description" content="HyicoPlatform 无人机远程监控与运营平台的纯前端交互演示。数据为浏览器内模拟生成，无需后端与账号。">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+
+<script>
+/* 首屏防闪白：必须在样式表之前同步执行。与主站、platform/webui 同一套做法。 */
+(function () {
+  document.documentElement.classList.add('has-js');
+  try {
+    var saved = localStorage.getItem('hyico-theme');
+    var dark = saved ? saved === 'dark'
+                     : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+  } catch (e) { /* 隐私模式下静默忽略 */ }
+})();
+</script>
+
+<link rel="stylesheet" href="./css/tokens.css?v=20260913">
+<link rel="stylesheet" href="./css/demo.css?v=20260913">
+</head>
+
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<!-- ============================ 演示提示条 ============================ -->
+<div class="demo-note" role="note">
+  <span class="demo-note__tag">演示</span>
+  <span>这是<b>纯前端演示</b>：界面与交互都是真的，但数据由浏览器内的模拟器生成，不是真实飞行数据。</span>
+</div>
+
+<!-- ============================ 页头 ============================ -->
+<header class="hd">
+  <div class="wrap hd__inner">
+    <a class="hd__brand" href="./index.html" aria-label="HyicoPlatform 演示首页">
+      <span class="hd__dot" aria-hidden="true"></span>
+      <span class="hd__name">HyicoPlatform</span>
+    </a>
+    <span class="hd__sub" data-hide-sm>远程监控与运营平台</span>
+    <div class="hd__right">
+      <span class="live" id="liveHint" aria-live="polite">
+        <span class="live__dot" aria-hidden="true"></span>
+        <span id="liveText">模拟数据流已启动</span>
+      </span>
+      <button type="button" class="btn btn--ghost btn--icon" id="themeBtn" aria-label="切换深浅色模式" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/>
+        </svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="icon-moon">
+          <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"/>
+        </svg>
+      </button>
+      <button type="button" class="btn btn--ghost" id="pauseBtn" aria-pressed="false">暂停数据</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <!-- ============================ 总览 ============================ -->
+  <section class="sec" aria-labelledby="ov-title">
+    <header class="sec__head">
+      <h1 id="ov-title">机队总览</h1>
+      <p>点任意一台进入单机详情。数值与姿态每 1.5 秒刷新一次，模拟真实遥测推送。</p>
+    </header>
+
+    <div class="stats" id="stats" aria-label="机队统计"></div>
+
+    <div class="grid" id="fleet"></div>
+  </section>
+
+  <!-- ============================ 单机详情 ============================ -->
+  <section class="sec" id="detailSec" aria-labelledby="dt-title" hidden>
+    <header class="sec__head sec__head--row">
+      <div>
+        <h2 id="dt-title">单机详情</h2>
+        <p id="dtMeta"></p>
+      </div>
+      <button type="button" class="btn btn--ghost" id="closeDetail">返回总览</button>
+    </header>
+
+    <div class="detail">
+      <article class="panel">
+        <h3 class="panel__title">飞行姿态</h3>
+        <div class="atti" id="atti">
+          <div class="atti__disc" id="attiDisc">
+            <div class="atti__sky"></div>
+            <div class="atti__ground"></div>
+            <div class="atti__horizon" id="attiHorizon"></div>
+          </div>
+          <div class="atti__ring" aria-hidden="true"></div>
+          <div class="atti__plane" aria-hidden="true">➤</div>
+          <div class="atti__pitch" id="attiPitch"></div>
+        </div>
+        <dl class="ro" id="attiReadouts"></dl>
+      </article>
+
+      <article class="panel">
+        <h3 class="panel__title">实时遥测</h3>
+        <dl class="kv" id="telemetry"></dl>
+      </article>
+
+      <article class="panel">
+        <h3 class="panel__title">告警</h3>
+        <ul class="alerts" id="alerts"></ul>
+      </article>
+
+      <article class="panel">
+        <h3 class="panel__title">遥测历史</h3>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr><th scope="col">时间</th><th scope="col">电量</th><th scope="col">高度</th><th scope="col">模式</th><th scope="col">解锁</th></tr>
+            </thead>
+            <tbody id="history"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="panel panel--wide">
+        <h3 class="panel__title">远程控制</h3>
+        <p class="note">
+          当前为<b>只读模式</b>：指令接口已保留，但后端不会下发任何 MAVLink 指令。
+          演示站同样不发任何请求，按钮始终禁用。
+        </p>
+        <div class="cmds" id="commands"></div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ft">
+  <div class="wrap ft__inner">
+    <span>HyicoPlatform · 纯前端交互演示</span>
+    <span class="ft__sep" aria-hidden="true">·</span>
+    <span>数据为浏览器内模拟生成，非真实飞行数据</span>
+  </div>
+</footer>
+
+<script src="./js/demo.js?v=20260913"></script>
+</body>
+</html>

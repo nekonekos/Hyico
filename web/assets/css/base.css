@@ -27,6 +27,8 @@ body {
   font-size: var(--fs-base);
   line-height: var(--lh-base);
   font-weight: var(--fw-normal);
+  /* Apple 正文的负字距，中文部分由系统字体自行处理，不受影响 */
+  letter-spacing: var(--ls-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -38,6 +40,7 @@ body {
 body.is-locked { overflow: hidden; }
 
 /* ---------- 标题 ---------- */
+/* 字重统一 600：Apple 极少用 700。字距随字号递减 —— 越大的字越紧。 */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: var(--fw-semi);
@@ -47,10 +50,10 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-h1 { font-size: var(--fs-display); font-weight: var(--fw-bold); }
+h1 { font-size: var(--fs-display); font-weight: var(--fw-semi); }
 h2 { font-size: var(--fs-h2); }
-h3 { font-size: var(--fs-h3); line-height: var(--lh-snug); }
-h4 { font-size: var(--fs-lg); line-height: var(--lh-snug); }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-snug); letter-spacing: var(--ls-body); }
+h4 { font-size: var(--fs-lg); line-height: var(--lh-snug); letter-spacing: var(--ls-body); }
 
 /* ---------- 正文元素 ---------- */
 p {

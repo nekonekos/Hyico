@@ -14,6 +14,8 @@
 .wrap--narrow { max-width: var(--wrap-narrow); }
 .wrap--wide { max-width: 1400px; }
 .wrap--flush { padding-inline: 0; }
+/* Apple 的居中文稿块（约 692px） */
+.wrap--text { max-width: var(--wrap-text); }
 
 /* ---------- 分区 ---------- */
 .section {
@@ -21,13 +23,13 @@
   position: relative;
 }
 
-.section--tight { padding-block: clamp(2.5rem, 1.6rem + 3.5vw, 4.5rem); }
+.section--tight { padding-block: clamp(3rem, 2rem + 4vw, 6rem); }
 .section--flush-top { padding-block-start: 0; }
 .section--flush-bottom { padding-block-end: 0; }
 .section--sub { background-color: var(--bg-sub); }
 
-/* 细线分区，替代粗重色块 */
-.section--ruled { border-top: 1px solid var(--border); }
+/* 区块之间不再用描边分隔，改用 --bg-sub 底色 + 留白 */
+.section--ruled { border-top: 0; }
 
 .section__head {
   display: grid;
@@ -105,16 +107,15 @@
   top: 0;
   z-index: var(--z-sticky);
   background: var(--glass);
-  backdrop-filter: saturate(160%) blur(14px);
-  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid transparent;
-  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+  transition: border-color var(--dur-2) var(--ease);
 }
 
 /* 滚动后才出现分隔线，初始状态更干净 */
 .site-header.is-scrolled {
   border-bottom-color: var(--border);
-  box-shadow: 0 1px 0 rgba(33, 54, 48, 0.02);
 }
 
 .site-header__inner {
@@ -139,8 +140,9 @@ main { display: block; }
 /* ==========================================================================
    页脚
    ========================================================================== */
+/* Apple 式页脚：密集小字、极细分隔线，列标题不再用大写等宽 */
 .site-footer {
-  padding-block: clamp(3rem, 2rem + 4vw, 5rem) var(--s-8);
+  padding-block: clamp(2.5rem, 2rem + 3vw, 4rem) var(--s-8);
   background-color: var(--bg-sub);
   border-top: 1px solid var(--border);
   color: var(--text-2);
@@ -161,11 +163,10 @@ main { display: block; }
 }
 
 .site-footer__col h3 {
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   font-weight: var(--fw-semi);
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--text-3);
+  letter-spacing: var(--ls-body);
+  color: var(--text);
   margin-bottom: var(--s-3);
 }
 
@@ -262,43 +263,22 @@ main { display: block; }
 /* ==========================================================================
    Hero 布局
    ========================================================================== */
+/* Apple 首页 Hero：纯色画布 + 居中排版。去掉原来的工程坐标纸网格底与品牌光晕，
+   改为单一居中文稿列，下方放图纸。 */
 .hero {
   position: relative;
-  padding-block: clamp(3rem, 1.5rem + 7vw, 7rem) clamp(3.5rem, 2rem + 6vw, 7rem);
+  padding-block: clamp(4rem, 2.5rem + 6vw, 8rem) clamp(3rem, 2rem + 4vw, 6rem);
   overflow: hidden;
 }
 
-/* 背景网格：极淡的工程坐标纸 */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, var(--line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 20%, transparent 78%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 20%, transparent 78%);
-  pointer-events: none;
+.hero__inner {
+  position: relative;
+  z-index: var(--z-base);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: var(--s-5);
 }
-
-/* 品牌色柔和光晕 */
-.hero::after {
-  content: "";
-  position: absolute;
-  top: -30%;
-  inset-inline-end: -10%;
-  width: min(780px, 90vw);
-  aspect-ratio: 1;
-  background: radial-gradient(circle at 50% 50%,
-    color-mix(in srgb, var(--mint-200) 34%, transparent) 0%,
-    color-mix(in srgb, var(--mint-100) 22%, transparent) 38%,
-    transparent 70%);
-  filter: blur(10px);
-  pointer-events: none;
-}
-
-.hero__inner { position: relative; z-index: var(--z-base); }
 
 /* ==========================================================================
    断点
@@ -315,7 +295,7 @@ main { display: block; }
   .split--wide-main { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
   .section__split { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
 
-  .hero__inner { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4.5rem); align-items: center; }
+  .hero__inner { gap: clamp(2rem, 4vw, 3.5rem); }
 
   .bento > .b-2 { grid-column: span 2; }
   .bento > .b-3 { grid-column: span 3; }
@@ -328,7 +308,6 @@ main { display: block; }
 }
 
 @media (max-width: 639px) {
-  :root { --header-h: 58px; }
   .grid--2, .grid--3, .grid--4 { grid-template-columns: minmax(0, 1fr); }
   .site-footer__bottom { justify-content: flex-start; }
 }

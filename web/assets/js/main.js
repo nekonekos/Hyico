@@ -20,6 +20,7 @@
     if (H.countup) H.countup.init();
     if (H.heroArt) H.heroArt.init();
     if (H.contact) H.contact.init();
+    if (H.subnav) H.subnav.init();
     if (H.nav) H.nav.markCurrent();
   }
 

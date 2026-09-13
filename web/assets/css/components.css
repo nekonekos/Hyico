@@ -51,46 +51,42 @@
   align-items: center;
   justify-content: center;
   gap: var(--s-2);
-  padding: 0.7rem 1.15rem;
-  border: 1px solid transparent;
+  padding: 0.72rem 1.35rem;
+  border: 0;
   border-radius: var(--r-full);
-  background: var(--accent);
+  background: var(--accent-strong);
   color: var(--accent-contrast);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semi);
-  letter-spacing: 0.01em;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-normal);
+  letter-spacing: var(--ls-body);
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color var(--dur-2) var(--ease),
-              color var(--dur-2) var(--ease),
-              border-color var(--dur-2) var(--ease),
-              transform var(--dur-2) var(--ease-out),
-              box-shadow var(--dur-2) var(--ease);
+  /* Apple 的按钮只变底色：不位移、不加阴影、不加描边 */
+  transition: background-color var(--dur-2) var(--ease), opacity var(--dur-2) var(--ease);
 }
 
-.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-2); }
-.btn:active { transform: translateY(0); box-shadow: none; }
-.btn { background: var(--accent-strong); }
-.btn:hover { background: var(--text); }
+.btn:hover { background: var(--text); color: var(--bg); }
+.btn:active { opacity: 0.85; }
 
-[data-theme="dark"] .btn { background: var(--accent); color: var(--accent-contrast); }
-[data-theme="dark"] .btn:hover { background: var(--accent-strong); }
+[data-theme="dark"] .btn { background: var(--mint-200); color: var(--gray-800); }
+[data-theme="dark"] .btn:hover { background: var(--mint-100); color: var(--gray-800); }
 
-.btn--lg { padding: 0.9rem 1.5rem; font-size: var(--fs-base); }
-.btn--sm { padding: 0.5rem 0.9rem; font-size: var(--fs-xs); }
+.btn--lg { padding: 0.9rem 1.6rem; font-size: var(--fs-lg); }
+.btn--sm { padding: 0.5rem 1rem; font-size: var(--fs-sm); }
 
+/* 次要按钮：描边 pill。Apple 更常用 .link-cta，这里保留给需要明确按钮感的场景 */
 .btn--ghost {
   background: transparent;
   color: var(--text);
-  border-color: var(--border-strong);
+  border: 1px solid var(--border-strong);
 }
 
 .btn--ghost:hover {
-  background: var(--surface);
+  background: var(--bg-sub);
   color: var(--text);
-  border-color: var(--text-3);
+  border-color: var(--text);
 }
 
 .btn--quiet {
@@ -100,7 +96,7 @@
   border-radius: var(--r-xs);
 }
 
-.btn--quiet:hover { box-shadow: none; transform: none; color: var(--text); }
+.btn--quiet:hover { background: transparent; color: var(--text); }
 
 .btn__icon { width: 16px; height: 16px; flex: none; transition: transform var(--dur-2) var(--ease-out); }
 .btn:hover .btn__icon { transform: translateX(3px); }
@@ -146,44 +142,34 @@
 /* ==========================================================================
    3. 标签 / 眉标 / 徽章
    ========================================================================== */
+/* Apple 没有等宽大写的眉标。降级为一行小号灰字：去掉字距、大写与前导短横线。
+   这一处改动影响全站 46 个调用点。 */
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-medium);
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--accent-strong);
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-normal);
+  letter-spacing: var(--ls-body);
+  color: var(--text-2);
 }
 
-.eyebrow::before {
-  content: "";
-  width: 18px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.6;
-}
+.eyebrow--plain { color: var(--text-3); }
 
-.eyebrow--plain::before { display: none; }
-
+/* Apple 的「药丸」是纯灰底、无描边、无等宽字体 */
 .chip {
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
-  padding: 0.3rem 0.7rem;
-  border: 1px solid var(--border);
+  padding: 0.34rem 0.8rem;
+  border: 0;
   border-radius: var(--r-full);
-  background: var(--surface);
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.02em;
+  background: var(--bg-sub);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-body);
   color: var(--text-2);
   white-space: nowrap;
 }
 
-.chip--accent { border-color: var(--accent); color: var(--accent-strong); }
+.chip--accent { background: var(--accent-soft); color: var(--accent-strong); }
 
 .chip__dot {
   width: 6px;
@@ -226,13 +212,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--s-4);
-  padding: clamp(1.25rem, 1rem + 1.2vw, 1.9rem);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  transition: border-color var(--dur-2) var(--ease),
-              transform var(--dur-2) var(--ease-out),
-              box-shadow var(--dur-2) var(--ease);
+  padding: clamp(1.5rem, 1.1rem + 1.6vw, 2.4rem);
+  background: var(--bg-sub);
+  border: 0;
+  border-radius: var(--r-tile);
+  transition: background-color var(--dur-2) var(--ease);
 }
 
 .card h3 { color: var(--text); }
@@ -243,7 +227,6 @@
 
 .card--plain {
   background: transparent;
-  border-color: transparent;
   padding: 0;
 }
 
@@ -252,9 +235,7 @@
 
 .card--link:hover,
 .card--link:focus-visible {
-  border-color: var(--border-strong);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-2);
+  background: var(--surface-sunk);
 }
 
 .card--link .card__more {
@@ -264,55 +245,37 @@
 
 .card--link:hover .card__more { transform: translateX(4px); }
 
-/* 顶部装饰线：悬停时长出品牌色细线 */
-.card--accent::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: -1px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  border-start-start-radius: var(--r-lg);
-  border-start-end-radius: var(--r-lg);
-  opacity: 0;
-  transition: opacity var(--dur-3) var(--ease);
-}
-
-.card--accent:hover::before { opacity: 1; }
-
 .card--dark {
-  background: var(--mint-800);
-  border-color: var(--mint-600);
-  color: var(--mint-50);
+  background: var(--gray-700);
+  color: var(--gray-50);
 }
 
-.card--dark h3 { color: var(--mint-50); }
-.card--dark p { color: var(--mint-200); }
+.card--dark h3 { color: var(--gray-50); }
+.card--dark p { color: var(--gray-300); }
 
 /* 卡片内的编号 */
 .card__index {
-  font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: var(--fw-medium);
-  letter-spacing: var(--ls-wide);
+  font-weight: var(--fw-normal);
+  letter-spacing: var(--ls-body);
   color: var(--text-3);
 }
 
-/* 图标容器 */
+/* 图标容器：圆形，Apple 的图标底一律是圆形 */
 .icon-tile {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: var(--r-md);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-full);
   background: var(--accent-soft);
   color: var(--accent-strong);
   flex: none;
 }
 
 .icon-tile svg { width: 20px; height: 20px; }
-.icon-tile--lg { width: 52px; height: 52px; border-radius: var(--r-lg); }
+.icon-tile--lg { width: 56px; height: 56px; }
 .icon-tile--lg svg { width: 24px; height: 24px; }
 
 /* ==========================================================================
@@ -335,30 +298,32 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   padding: 0.45rem 0.7rem;
   border-radius: var(--r-sm);
-  color: var(--text-2);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: var(--fw-normal);
+  letter-spacing: -0.01em;
   text-decoration: none;
   white-space: nowrap;
-  transition: color var(--dur-2) var(--ease), background-color var(--dur-2) var(--ease);
+  /* Apple 顶导航只变色，不出背景 */
+  transition: color var(--dur-2) var(--ease), opacity var(--dur-2) var(--ease);
 }
 
-.nav__link:hover { color: var(--text); background: var(--surface); }
+.nav__link:hover { color: var(--accent-strong); }
 
-.nav__link[aria-current="page"] { color: var(--text); font-weight: var(--fw-semi); }
+.nav__link[aria-current="page"] { font-weight: var(--fw-medium); }
 
-/* 当前页：底部细线，比圆点更像"当前"，也不会被误读为分隔符 */
+/* 当前页：一条极细的下划线，而不是色块 */
 .nav__link[aria-current="page"]::after {
   content: "";
   position: absolute;
   inset-inline: 0.7rem;
-  bottom: 3px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--accent);
+  bottom: 4px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
 }
 
 .nav__caret { width: 12px; height: 12px; transition: transform var(--dur-2) var(--ease); }
@@ -368,10 +333,10 @@
   position: absolute;
   top: calc(100% + 10px);
   inset-inline-start: 0;
-  min-width: 232px;
-  padding: var(--s-2);
+  min-width: 248px;
+  padding: var(--s-3);
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 0;
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-3);
   display: grid;
@@ -402,10 +367,8 @@
 
 .nav__menu-label {
   padding: 0.5rem 0.65rem 0.25rem;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-body);
   color: var(--text-3);
 }
 
@@ -446,16 +409,13 @@
 .spec-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
 }
 
 .spec-table caption {
   text-align: start;
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--text-3);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
   padding-bottom: var(--s-3);
 }
 
@@ -474,18 +434,14 @@
 }
 
 .spec-table td {
-  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   font-weight: var(--fw-medium);
   color: var(--text);
-  letter-spacing: -0.01em;
+  letter-spacing: var(--ls-body);
 }
 
 .spec-table tr:last-child th,
 .spec-table tr:last-child td { border-bottom: 0; }
-
-.spec-table tbody tr { transition: background-color var(--dur-1) var(--ease); }
-.spec-table tbody tr:hover { background: var(--bg-sub); }
 
 /* 键值对规格卡（移动端友好） */
 .spec-list {
@@ -504,13 +460,12 @@
   border-bottom: 1px solid var(--border);
 }
 
-.spec-list__row dt { color: var(--text-2); font-size: var(--fs-sm); }
+.spec-list__row dt { color: var(--text-2); font-size: var(--fs-base); }
 
 .spec-list__row dd {
   margin: 0;
-  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   font-weight: var(--fw-medium);
   text-align: end;
 }
@@ -524,7 +479,7 @@
   gap: var(--s-1);
   padding: 4px;
   background: var(--bg-sub);
-  border: 1px solid var(--border);
+  border: 0;
   border-radius: var(--r-full);
   width: fit-content;
   max-width: 100%;
@@ -618,19 +573,19 @@
    ========================================================================== */
 .stat { display: grid; gap: var(--s-2); }
 
+/* Apple 的数据带：特大数字，无等宽字体，无分隔线 */
 .stat__value {
-  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
-  font-weight: var(--fw-medium);
+  font-size: clamp(2.5rem, 1.4rem + 4.6vw, 4.5rem);
+  font-weight: var(--fw-semi);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--ls-tight);
   color: var(--text);
 }
 
-.stat__unit { font-size: 0.45em; margin-inline-start: 4px; color: var(--text-3); font-weight: var(--fw-normal); }
+.stat__unit { font-size: 0.4em; margin-inline-start: 6px; color: var(--text-2); font-weight: var(--fw-normal); }
 
-.stat__label { font-size: var(--fs-sm); color: var(--text-2); }
+.stat__label { font-size: var(--fs-base); color: var(--text-2); }
 
 /* ==========================================================================
    11. 时间线
@@ -663,9 +618,8 @@
 .timeline__item:last-child { padding-bottom: 0; }
 
 .timeline__date {
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  letter-spacing: 0.04em;
+  font-size: var(--fs-sm);
+  letter-spacing: var(--ls-body);
   color: var(--text-3);
 }
 
@@ -689,23 +643,26 @@
 
 .field__hint { font-size: var(--fs-xs); color: var(--text-3); }
 
+/* Apple 的表单控件：灰底圆角、平时无描边，聚焦时才出现品牌色环 */
 .field__input,
 .field__select,
 .field__textarea {
   width: 100%;
-  padding: 0.7rem 0.9rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  padding: 0.8rem 1rem;
+  background: var(--bg-sub);
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
   color: var(--text);
-  font-size: var(--fs-sm);
-  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+  font-size: var(--fs-base);
+  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease),
+              background-color var(--dur-2) var(--ease);
 }
 
 .field__textarea { min-height: 8.5rem; }
 
 .field__input:hover,
 .field__select:hover,
-.field__textarea:hover { border-color: var(--border-strong); }
+.field__textarea:hover { background: var(--surface-sunk); }
 
 .field__input:focus,
 .field__select:focus,
@@ -787,10 +744,8 @@
 }
 
 .marquee__item {
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: var(--fs-sm);
+  letter-spacing: var(--ls-body);
   color: var(--text-3);
   white-space: nowrap;
 }
@@ -798,16 +753,13 @@
 /* ==========================================================================
    14. 图形件：工程图纸与界面示意
    ========================================================================== */
-/* 图纸容器：细网格底 + 四角标记 */
+/* 图纸容器：去掉描边与网格底，只留一块浅灰底，让图纸本身成为焦点 */
 .blueprint {
   position: relative;
-  padding: clamp(1rem, 2vw, 2rem);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  background:
-    linear-gradient(to right, var(--line) 1px, transparent 1px) 0 0 / 32px 32px,
-    linear-gradient(to bottom, var(--line) 1px, transparent 1px) 0 0 / 32px 32px,
-    var(--surface);
+  padding: clamp(1.25rem, 2.4vw, 2.5rem);
+  border: 0;
+  border-radius: var(--r-xl);
+  background: var(--bg-sub);
 }
 
 .blueprint svg { width: 100%; height: auto; }
@@ -926,8 +878,8 @@
 
 /* 界面示意窗口 */
 .mock {
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
+  border: 0;
+  border-radius: var(--r-xl);
   background: var(--surface);
   overflow: hidden;
   box-shadow: var(--shadow-2);
@@ -940,10 +892,9 @@
   padding: var(--s-3) var(--s-4);
   border-bottom: 1px solid var(--border);
   background: var(--bg-sub);
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--fs-xs);
   color: var(--text-3);
-  letter-spacing: 0.03em;
+  letter-spacing: var(--ls-body);
 }
 
 .mock__dots { display: flex; gap: 5px; }
@@ -958,7 +909,7 @@
 
 /* 模拟数据条 */
 .mock__row { display: grid; grid-template-columns: 76px minmax(0, 1fr) 46px; gap: var(--s-3); align-items: center; }
-.mock__row span { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-3); }
+.mock__row span { font-size: var(--fs-xs); color: var(--text-3); }
 .mock__bar-track { height: 5px; border-radius: var(--r-full); background: var(--bg-sub); overflow: hidden; }
 
 .mock__bar-fill {
@@ -977,27 +928,14 @@
    ========================================================================== */
 .page-hero {
   position: relative;
-  padding-block: clamp(2.5rem, 1.6rem + 4vw, 4.5rem) clamp(2rem, 1.4rem + 3vw, 3.5rem);
-  border-bottom: 1px solid var(--border);
+  padding-block: clamp(3rem, 1.8rem + 5vw, 6rem) clamp(2.25rem, 1.5rem + 3.5vw, 4rem);
+  border-bottom: 0;
   overflow: hidden;
 }
 
-.page-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, var(--line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 70% 100% at 15% 0%, #000 10%, transparent 72%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 100% at 15% 0%, #000 10%, transparent 72%);
-  pointer-events: none;
-}
-
-.page-hero__inner { position: relative; display: grid; gap: var(--s-5); max-width: 68ch; }
-.page-hero h1 { font-size: clamp(2rem, 1.3rem + 2.8vw, 3.25rem); }
-.page-hero p { font-size: var(--fs-lede); color: var(--text-2); line-height: 1.7; }
+.page-hero__inner { position: relative; display: grid; gap: var(--s-4); max-width: 74ch; }
+.page-hero h1 { font-size: var(--fs-h2); }
+.page-hero p { font-size: var(--fs-lede); color: var(--text-2); letter-spacing: var(--ls-lift); }
 
 /* 面包屑 */
 .crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); font-size: var(--fs-xs); color: var(--text-3); }
@@ -1047,10 +985,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-2) var(--s-4);
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   color: var(--text-3);
-  letter-spacing: 0.03em;
+  letter-spacing: var(--ls-body);
 }
 
 .post-item__title {
@@ -1083,10 +1020,11 @@
 
 /* 空状态 */
 .empty-state {
-  padding: clamp(2.5rem, 2rem + 4vw, 5rem) var(--s-6);
+  padding: clamp(3rem, 2rem + 5vw, 6rem) var(--s-6);
   text-align: center;
-  border: 1px dashed var(--border-strong);
-  border-radius: var(--r-lg);
+  border: 0;
+  border-radius: var(--r-xl);
+  background: var(--bg-sub);
   color: var(--text-2);
   display: grid;
   gap: var(--s-3);
@@ -1100,11 +1038,10 @@
   display: flex;
   gap: var(--s-3);
   padding: var(--s-4) var(--s-5);
-  border: 1px solid var(--border);
-  border-inline-start: 2px solid var(--accent);
+  border: 0;
   border-radius: var(--r-md);
   background: var(--bg-sub);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   color: var(--text-2);
 }
 
@@ -1135,8 +1072,8 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
+  border: 0;
+  border-radius: var(--r-xl);
   background: var(--photo-bg);
   overflow: hidden;
 }
@@ -1174,10 +1111,189 @@
 
 .photo__tag {
   flex: none;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-body);
   color: var(--text-3);
   white-space: nowrap;
+}
+
+/* ==========================================================================
+   21. Tile —— Apple 首页的核心图元
+   --------------------------------------------------------------------------
+   一个 tile = 一个区块：居中排版、大标题、一句话说明、最多两个链接。
+   `--dark` 与 `.surface-dark` 使用同一套「局部变量重声明」手法：tile 内部
+   重新定义一份主题变量，子元素无需任何特殊处理即可正确反色。
+   ========================================================================== */
+.tile {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+  gap: var(--s-5);
+  padding: clamp(3rem, 2rem + 5vw, 7rem) var(--gutter);
+  border-radius: var(--r-xl);
+  background: var(--bg-sub);
+  overflow: hidden;
+}
+
+/* 全宽 tile：突破容器，左右顶到视口边缘 */
+.tile--full {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  border-radius: 0;
+}
+
+/* 深色 tile */
+.tile--dark {
+  --bg:            var(--gray-800);
+  --bg-sub:        var(--gray-700);
+  --surface:       var(--gray-700);
+  --surface-2:     var(--gray-600);
+  --surface-sunk:  var(--black);
+  --border:        var(--gray-600);
+  --border-strong: var(--gray-600);
+
+  --text:   var(--gray-50);
+  --text-2: var(--gray-300);
+  --text-3: var(--gray-400);
+
+  --accent:          var(--mint-200);
+  --accent-strong:   var(--mint-200);
+  --accent-soft:     rgba(158, 189, 180, 0.16);
+  --accent-contrast: var(--gray-800);
+
+  --line: rgba(255, 255, 255, 0.1);
+  --glass: rgba(29, 29, 31, 0.78);
+
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* 深色主题下画布已是纯黑，深色 tile 需提亮一档才能与画布区分 */
+[data-theme="dark"] .tile--dark {
+  --bg:      var(--gray-800);
+  --bg-sub:  var(--gray-700);
+  --surface: var(--gray-700);
+}
+
+.tile__head {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-3);
+  /* Apple 的居中文稿块比正文窄得多，一行 8–14 个字最好读 */
+  max-width: var(--wrap-text);
+}
+
+.tile__head h2 { font-size: var(--fs-h2); }
+.tile__head p {
+  font-size: var(--fs-lede);
+  color: var(--text-2);
+  letter-spacing: var(--ls-lift);
+}
+
+.tile__art {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: min(100%, 900px);
+  margin-inline: auto;
+}
+
+.tile__art svg { width: 100%; height: auto; }
+
+.tile__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3) var(--s-8);
+}
+
+/* tile 网格：Apple 首页的两列拼接，缝只有 12px */
+.tile-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 760px) {
+  .tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile-grid > .tile--span-2 { grid-column: span 2; }
+}
+
+/* ==========================================================================
+   22. .link-cta —— Apple 的文字链接 CTA
+   正文里「了解更多 ›」。无底色、无边框、无下划线，悬停才出现下划线。
+   它接管了原来 .btn--ghost 承担的「次要 CTA」角色。
+   ========================================================================== */
+.link-cta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25em;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-normal);
+  letter-spacing: var(--ls-body);
+  color: var(--accent-strong);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.link-cta::after {
+  content: "\203A";  /* › */
+  font-size: 1.1em;
+  line-height: 1;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.link-cta:hover { text-decoration: underline; text-underline-offset: 0.22em; }
+.link-cta:hover::after { transform: translateX(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .link-cta:hover::after { transform: none; }
+}
+
+/* ==========================================================================
+   23. .subnav —— Apple 产品页的吸顶二级导航
+   贴在主导航下方，玻璃底，小字水平排列，当前区块高亮。
+   无 JS 时就是一组普通锚点链接，功能不受影响（高亮由 subnav.js 补上）。
+   ========================================================================== */
+.subnav {
+  position: sticky;
+  top: var(--header-h);
+  z-index: calc(var(--z-sticky) - 1);
+  background: var(--glass);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.subnav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2) var(--s-6);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-height: 44px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.subnav__list::-webkit-scrollbar { display: none; }
+
+.subnav__link {
+  display: inline-block;
+  padding: 0.55rem 0;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--dur-2) var(--ease);
+}
+
+.subnav__link:hover { color: var(--text); }
+
+.subnav__link[aria-current="true"] {
+  color: var(--text);
+  box-shadow: inset 0 -2px 0 var(--accent);
 }

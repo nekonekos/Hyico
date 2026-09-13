@@ -130,27 +130,33 @@
   <!-- ============================ Hero ============================ -->
   <section class="hero">
     <div class="wrap hero__inner">
-      <div class="hero__copy">
+      <div class="tile__head">
         <span class="eyebrow" data-content="hero.eyebrow">H 型构架飞行平台</span>
         <h1 class="hero__title" data-content-html="hero.title">轻型运输无人机<br>与远程运营平台</h1>
-        <p class="hero__lede" data-content="hero.lede">我们只做一件事：让 H 型构架的飞行平台把载荷稳稳送到目的地。从 HyicoFly-H770 的机身，到 HyicoPlatform 的云端运营，再到 HGC 地面站的操作手感，全部由同一支团队设计。</p>
-        <div class="hero__actions">
-          <a class="btn btn--lg" href="h770.html">
-            <span data-content="hero.primaryCta">了解 HyicoFly-H770</span>
-            <svg class="btn__icon" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>
-          </a>
-          <a class="btn btn--lg btn--ghost" href="platform.html" data-content="hero.secondaryCta">看看运营平台</a>
-        </div>
-        <div class="hero__meta">
+        <p class="hero__lede" data-content="hero.lede">三条业务线，一套平台。机身、载荷、地面站，同一支团队设计。</p>
+      </div>
+
+      <div class="hero__actions">
+        <a class="btn btn--lg" href="h770.html" data-content="hero.primaryCta">了解 HyicoFly-H770</a>
+        <a class="link-cta" href="platform.html" data-content="hero.secondaryCta">看看运营平台</a>
+      </div>
+
+      <div class="hero__meta">
           <span class="chip"><span class="chip__dot"></span>H 型构架四旋翼</span>
           <span class="chip">770 mm 轴距</span>
           <span class="chip">1 kg 有效载荷</span>
           <span class="chip">光流定位</span>
-          <span class="chip">4G 数链上行</span>
-        </div>
+        <span class="chip">4G 数链上行</span>
       </div>
 
-      <div class="hero__art" data-parallax="16">
+      <!-- data-parallax 已移除：图纸停用后这一层只剩规格行，
+           留着视差会让那行字跟着鼠标飘。 -->
+      <div class="hero__art">
+        <!-- 首页 Hero 的旋转无人机图纸：按需求停用。
+             整块包在 template 里，其内容是惰性的，不会被渲染也不会执行脚本。
+             把 template 标签换回 div 即可完整恢复。
+             这里不能用 HTML 注释包，因为内部类名含双连字符。 -->
+        <template id="hero-blueprint-off">
         <div class="blueprint">
           <svg viewBox="0 0 440 460" role="img" aria-label="HyicoFly-H770 H 型构架俯视结构图：25mm 中梁碳管贯穿，两端铝合金三通分出 20mm 机臂碳管，80mm 中心板包裹 6S2P 电池组，四个 6010 电机配 1855 折叠桨">
             <!-- 旋翼扫掠面 -->
@@ -257,6 +263,7 @@
             <text class="bp-tag" x="220" y="436" text-anchor="middle">6010 电机 · 1855 桨 · 6S2P</text>
           </svg>
         </div>
+        </template>
 
         <div class="hero__specs">
           <span><strong data-content="hero.specs.0">HyicoFly-H770</strong></span>
@@ -297,14 +304,14 @@
   <!-- ============================ 三条业务线 ============================ -->
   <section class="section" aria-labelledby="pillars-title">
     <div class="wrap">
-      <div class="section__head" data-reveal>
+      <div class="tile__head" data-reveal style="margin-inline: auto; margin-bottom: var(--s-10)">
         <span class="eyebrow">我们在做什么</span>
-        <h2 id="pillars-title" data-content="pillars.title">三条业务线，同一套飞行平台</h2>
-        <p data-content="pillars.lede">机体、载荷、软件不是三家公司拼起来的产品，而是同一支团队从同一张图纸做出来的东西，所以它们才能真正咬合在一起。</p>
+        <h2 id="pillars-title" data-content="pillars.title">三条业务线。一套平台。</h2>
+        <p data-content="pillars.lede">机体、载荷、软件，都是同一张图纸上的东西。</p>
       </div>
 
-      <div class="bento" data-reveal-stagger="90">
-        <article class="card card--accent b-2" data-reveal>
+      <div class="tile-grid" data-reveal-stagger="90">
+        <article class="tile" data-reveal>
           <div class="pillar__art">
             <svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M10 20h44"/>
@@ -317,10 +324,10 @@
           </div>
           <span class="card__index">01</span>
           <h3 data-content="pillars.items.0.title">轻型运输</h3>
-          <p data-content="pillars.items.0.desc">1kg 级别的有效载荷，是把「少量、急需、时效敏感」的东西送出去最现实的量级。整机围绕这个任务做取舍。</p>
+          <p data-content="pillars.items.0.desc">1kg 级别。少量、急需、时效敏感的东西，最现实的量级。</p>
         </article>
 
-        <article class="card card--accent b-2" data-reveal>
+        <article class="tile" data-reveal>
           <div class="pillar__art">
             <svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M8 50h48"/>
@@ -332,10 +339,10 @@
           </div>
           <span class="card__index">02</span>
           <h3 data-content="pillars.items.1.title">科研探测</h3>
-          <p data-content="pillars.items.1.desc">稳定的低速平台与开放的载荷接口，让传感器能按计划飞完每一条测线，而不是被飞机本身的不确定性打断。</p>
+          <p data-content="pillars.items.1.desc">稳定的低速平台，开放的载荷接口。让传感器飞完每一条测线。</p>
         </article>
 
-        <article class="card card--accent b-2" data-reveal>
+        <article class="tile tile--span-2 tile--dark" data-reveal>
           <div class="pillar__art">
             <svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <rect x="10" y="14" width="44" height="30" rx="4"/>
@@ -346,14 +353,14 @@
           </div>
           <span class="card__index">03</span>
           <h3 data-content="pillars.items.2.title">远程运营</h3>
-          <p data-content="pillars.items.2.desc">HyicoPlatform 把飞行数据接进大数据管道，用 DeepSeek 做语义层的分析与问答，让运营者看懂发生了什么。</p>
+          <p data-content="pillars.items.2.desc">飞行数据进大数据管道，用 DeepSeek 做语义层的分析与问答。</p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- ============================ 产品 ============================ -->
-  <section class="section section--sub section--ruled" aria-labelledby="product-title">
+  <section class="section surface-dark" aria-labelledby="product-title">
     <div class="wrap">
       <div class="product-feature">
         <div class="product-feature__art" data-reveal>
@@ -453,7 +460,7 @@
       <div class="section__head" data-reveal>
         <span class="eyebrow">实物</span>
         <h2 id="photos-title" data-content="photos.title">图纸之外，看看真东西</h2>
-        <p data-content="photos.lede">下面都是我们自己装机的实拍，不是渲染图。图纸能说明结构关系，但要判断用料和做工，还是得看实物。</p>
+        <p data-content="photos.lede">都是我们自己装机的实拍，不是渲染图。</p>
       </div>
 
       <div class="stack stack--lg">
@@ -527,8 +534,8 @@
     <div class="wrap">
       <div class="section__head" data-reveal>
         <span class="eyebrow">软件</span>
-        <h2 id="platform-title" data-content="platform.title">飞机之外，我们把软件也做完了</h2>
-        <p data-content="platform.lede">HyicoPlatform 负责把飞机、载荷和数据连成一条完整的运营链路；HGC 负责让飞手在强光、颠簸和高压下依然能准确操作。</p>
+        <h2 id="platform-title" data-content="platform.title">飞机之外，还有软件。</h2>
+        <p data-content="platform.lede">一条完整的运营链路，和一个飞手真的愿意用的地面站。</p>
       </div>
 
       <div class="grid grid--2 grid--gap-lg" data-reveal-stagger="120">
@@ -571,7 +578,7 @@
       <div class="section__split">
         <div class="stack" data-reveal>
           <span class="eyebrow">为什么是 H 型构架</span>
-          <h2 id="tech-title" data-content="tech.title">我们把构型选择当成产品定义的一部分</h2>
+          <h2 id="tech-title" data-content="tech.title">构型，就是产品定义。</h2>
           <p data-content="tech.lede">市面上大多数小型多旋翼是 X 型构架。我们选择 H 型，是因为在「载重 + 长航时 + 可维护」这三个约束同时成立时，H 型给出了更好的整体解。</p>
           <div class="row">
             <a class="btn btn--ghost" href="technology.html" data-content="tech.cta">看技术细节</a>
@@ -645,7 +652,7 @@
     <div class="wrap">
       <div class="section__head" data-reveal>
         <span class="eyebrow">最新动态</span>
-        <h2 id="news-title" data-content="news.title">进展与记录</h2>
+        <h2 id="news-title" data-content="news.title">进展</h2>
       </div>
 
       <div class="post-list" data-list="news" data-limit="3" data-empty="#news-empty" data-reveal>

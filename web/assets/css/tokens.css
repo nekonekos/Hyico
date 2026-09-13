@@ -5,6 +5,46 @@
    品牌色阶由客户给定；带 * 标记的为在给定色基础上派生的中间/加深色。
    ========================================================================== */
 
+/* ==========================================================================
+   自托管拉丁字面 · Inter
+   --------------------------------------------------------------------------
+   只覆盖拉丁字母、数字与常用标点。中文码位不在 unicode-range 内，会自动
+   回退到 --font-sans 里的系统 CJK 字体，因此中英混排得到「Inter + 系统中文」，
+   与改造前的观感保持连续。
+   权重 400 / 500 / 600，合计 65.6 KB，随站点一起部署，运行期零外部请求。
+   注意：@font-face 是顶层 at-rule，必须写在 :root 之外。
+   ========================================================================== */
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
 
@@ -21,42 +61,53 @@
   --mint-950: #141E1A;  /* * 最深，阴影与页脚 */
   --white: #FFFFFF;
 
+  /* ---------- 中性灰阶 ----------
+     Apple 灰阶。画布、文字、分隔、交替区块全部由这一组接管；
+     品牌绿只负责强调（按钮、链接、焦点环）。 */
+  --gray-50:  #F5F5F7;  /* 交替区块底（浅色）/ 主文字（深色） */
+  --gray-100: #E8E8ED;  /* 表单描边 */
+  --gray-200: #D2D2D7;  /* 次级描边 */
+  --gray-300: #A1A1A6;  /* 深色区块里的次级文字 */
+  --gray-400: #86868B;  /* 深色主题的次级文字 */
+  --gray-500: #6E6E73;  /* 浅色主题的次级文字 */
+  --gray-600: #424245;  /* 深色主题的分隔线 / 控件底 */
+  --gray-700: #2A2A2C;  /* 深色主题的区块底 */
+  --gray-800: #1D1D1F;  /* 主文字（浅色）/ 深色画布上的区块底 */
+  --black:    #000000;  /* 深色主题画布 */
+
   /* ---------- 字体 ---------- */
-  /* 西文优先，中文回退；避免 Windows 上中文像素字体的西文字形拖后腿 */
-  --font-sans: system-ui, -apple-system, "Segoe UI Variable Text", "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "PingFang SC", "HarmonyOS Sans SC",
-    "MiSans", "Source Han Sans SC", "Noto Sans SC", "Microsoft YaHei UI",
-    "Microsoft YaHei", sans-serif;
-  /* 参数、编号、代码：等宽 + 表格数字，是"工程感"的主要来源 */
+  /* Apple 平台先命中真 SF Pro；其余平台落到自托管的 Inter（见文件顶部）。
+     中文一律由系统 CJK 字体接管 —— Inter 的 unicode-range 不含中文码位。 */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI Variable Text",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC",
+    "HarmonyOS Sans SC", "MiSans", "Source Han Sans SC", "Noto Sans SC",
+    "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+  /* 参数、编号、代码：等宽 + 表格数字 */
   --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Cascadia Code",
     "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --font-display: var(--font-sans);
 
-  /* 可选：自托管显示字体。把 woff2 放进 assets/fonts/ 后取消注释即可启用，
-     全站会自动改用品牌字体，无需改其它任何文件。
-  @font-face {
-    font-family: "Hyico Display";
-    src: url("../fonts/hyico-display.woff2") format("woff2");
-    font-weight: 300 800;
-    font-display: swap;
-  }
-  */
-
-  --fs-xs:   0.75rem;    /* 12 */
+  --fs-xs:   0.75rem;    /* 12 · Apple caption */
   --fs-sm:   0.8125rem;  /* 13 */
-  --fs-base: 1rem;       /* 16 */
-  --fs-lg:   1.0625rem;  /* 17 */
-  --fs-xl:   1.25rem;    /* 20 */
-  --fs-2xl:  1.5rem;     /* 24 */
-  --fs-display: clamp(2.25rem, 1.3rem + 3.8vw, 4rem);
-  --fs-h2:      clamp(1.625rem, 1.15rem + 1.9vw, 2.5rem);
-  --fs-h3:      clamp(1.125rem, 1rem + 0.55vw, 1.4375rem);
-  --fs-lede:    clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+  --fs-base: 1.0625rem;  /* 17 · Apple 正文就是 17px，不是 16px */
+  --fs-lg:   1.1875rem;  /* 19 */
+  --fs-xl:   1.5rem;     /* 24 · Apple intro-elevated */
+  --fs-2xl:  1.75rem;    /* 28 */
+  --fs-display: clamp(2.5rem, 1.4rem + 5.2vw, 5rem);
+  --fs-h2:      clamp(2rem, 1.2rem + 3.4vw, 3.5rem);
+  --fs-h3:      clamp(1.3125rem, 1.1rem + 1.2vw, 1.75rem);
+  --fs-lede:    clamp(1.1875rem, 1.05rem + 0.7vw, 1.5rem);
 
-  --lh-tight: 1.12;
+  /* 行高：Apple 正文是 1.47，但那是给拉丁文调的。中文字形占满 em 框、
+     没有升降部提供视觉间隔，1.47 会明显发挤，因此中文正文取 1.6。
+     这是全站唯一有意偏离 Apple 数值的地方。 */
+  --lh-tight: 1.1;       /* 中文标题没有 x-height 缓冲，不用 Apple 的 1.0625 */
   --lh-snug:  1.35;
-  --lh-base:  1.75;
-  --ls-tight: -0.022em;
+  --lh-base:  1.6;
+  /* 字距：Apple 的大字号用「正」字距，正文用负字距 */
+  --ls-tight: -0.025em;  /* 特大标题 */
+  --ls-body:  -0.022em;  /* 正文 */
+  --ls-lift:  0.009em;   /* lede / intro 级别的大字正文 */
   --ls-wide:  0.1em;
 
   --fw-light: 300;
@@ -79,27 +130,30 @@
   --s-20: 5rem;
   --s-24: 6rem;
 
-  --wrap: 1200px;
+  --wrap: 1180px;
   --wrap-narrow: 780px;
+  /* Apple 居中文稿块的宽度（约 692px），用于 tile 内的一句话说明 */
+  --wrap-text: 692px;
   --gutter: clamp(1.25rem, 0.7rem + 2vw, 2.5rem);
-  --section-y: clamp(4rem, 2.4rem + 6vw, 7.5rem);
-  --header-h: 62px;
+  --section-y: clamp(5rem, 3rem + 7vw, 10rem);
+  --header-h: 48px;
 
   /* ---------- 圆角 ---------- */
-  --r-xs: 4px;
-  --r-sm: 6px;
-  --r-md: 10px;
-  --r-lg: 16px;
-  --r-xl: 24px;
+  --r-xs: 6px;
+  --r-sm: 8px;
+  --r-md: 12px;   /* 表单控件 */
+  --r-lg: 18px;
+  --r-xl: 28px;
+  --r-tile: 18px; /* Apple tile / 卡片圆角 */
   --r-full: 999px;
 
   /* ---------- 动效 ---------- */
   --ease:     cubic-bezier(0.22, 0.61, 0.36, 1);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-1: 120ms;
-  --dur-2: 220ms;
-  --dur-3: 420ms;
-  --dur-4: 800ms;
+  --ease-out: cubic-bezier(0.28, 0.11, 0.32, 1);  /* Apple 常用曲线 */
+  --dur-1: 140ms;
+  --dur-2: 240ms;
+  --dur-3: 600ms;
+  --dur-4: 900ms;
 
   /* ---------- 层级 ---------- */
   --z-base: 1;
@@ -108,17 +162,18 @@
   --z-skip: 100;
 
   /* ================= 浅色主题（默认） ================= */
-  --bg:            var(--mint-50);
-  --bg-sub:        var(--mint-25);
+  --bg:            var(--white);
+  --bg-sub:        var(--gray-50);
   --surface:       var(--white);
-  --surface-2:     var(--mint-25);
-  --surface-sunk:  var(--mint-100);
-  --border:        var(--mint-100);
-  --border-strong: var(--mint-200);
+  --surface-2:     var(--gray-50);
+  --surface-sunk:  var(--gray-100);
+  /* 区块之间不再靠描边分隔，改用 --bg-sub 底色；--border 只留给表单、表格、代码 */
+  --border:        var(--gray-100);
+  --border-strong: var(--gray-200);
 
-  --text:   var(--mint-800);
-  --text-2: var(--mint-500);
-  --text-3: var(--mint-400); /* 仅用于 ≥18px 或装饰性信息 */
+  --text:   var(--gray-800);
+  --text-2: var(--gray-500);
+  --text-3: var(--gray-400); /* 仅用于 ≥18px 或装饰性信息 */
 
   --accent:          var(--mint-400);
   --accent-strong:   var(--mint-500);
@@ -126,12 +181,12 @@
   --accent-contrast: var(--white);
   --focus:           var(--mint-500);
 
-  --line: rgba(87, 142, 125, 0.14);
-  --glass: rgba(235, 241, 239, 0.78);
+  --line: rgba(0, 0, 0, 0.06);
+  --glass: rgba(255, 255, 255, 0.72);
 
-  --shadow-1: 0 1px 2px rgba(33, 54, 48, 0.05);
-  --shadow-2: 0 4px 14px -6px rgba(33, 54, 48, 0.16);
-  --shadow-3: 0 20px 44px -24px rgba(33, 54, 48, 0.28);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-2: 0 4px 16px -8px rgba(0, 0, 0, 0.10);
+  --shadow-3: 0 24px 48px -28px rgba(0, 0, 0, 0.18);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 
   /* 实物照片的"摄影棚"底。照片是透明底 WebP，黑色碳纤维件必须放在浅色底上才看得清，
@@ -141,30 +196,30 @@
 
 /* ================= 深色主题 ================= */
 [data-theme="dark"] {
-  --bg:            var(--mint-900);
-  --bg-sub:        var(--mint-950);
-  --surface:       var(--mint-800);
-  --surface-2:     #263E37;
-  --surface-sunk:  var(--mint-950);
-  --border:        var(--mint-600);
-  --border-strong: var(--mint-500);
+  --bg:            var(--black);
+  --bg-sub:        var(--gray-800);
+  --surface:       var(--gray-800);
+  --surface-2:     var(--gray-700);
+  --surface-sunk:  var(--black);
+  --border:        var(--gray-600);
+  --border-strong: var(--gray-600);
 
-  --text:   var(--mint-50);
-  --text-2: var(--mint-200);
-  --text-3: var(--mint-400);
+  --text:   var(--gray-50);
+  --text-2: var(--gray-400);
+  --text-3: var(--gray-400);
 
   --accent:          var(--mint-200);
-  --accent-strong:   var(--mint-100);
+  --accent-strong:   var(--mint-200);
   --accent-soft:     rgba(158, 189, 180, 0.14);
-  --accent-contrast: var(--mint-900);
+  --accent-contrast: var(--gray-800);
   --focus:           var(--mint-200);
 
-  --line: rgba(158, 189, 180, 0.12);
-  --glass: rgba(26, 39, 35, 0.78);
+  --line: rgba(255, 255, 255, 0.08);
+  --glass: rgba(0, 0, 0, 0.72);
 
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-2: 0 4px 16px -6px rgba(0, 0, 0, 0.45);
-  --shadow-3: 0 22px 48px -26px rgba(0, 0, 0, 0.6);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 4px 16px -8px rgba(0, 0, 0, 0.6);
+  --shadow-3: 0 24px 48px -28px rgba(0, 0, 0, 0.7);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
   /* 深色模式下照片板略微压暗，避免整块亮色过于刺眼 */
@@ -176,30 +231,30 @@
    它自己重新声明一整套局部变量，因此内部组件无需任何特殊处理即可正确反色。
    ========================================================================== */
 .surface-dark {
-  --bg:            var(--mint-800);
-  --bg-sub:        var(--mint-950);
-  --surface:       var(--mint-600);
-  --surface-2:     #2C4740;
-  --surface-sunk:  var(--mint-950);
-  --border:        var(--mint-600);
-  --border-strong: var(--mint-500);
+  --bg:            var(--gray-800);
+  --bg-sub:        var(--gray-700);
+  --surface:       var(--gray-700);
+  --surface-2:     var(--gray-600);
+  --surface-sunk:  var(--black);
+  --border:        var(--gray-600);
+  --border-strong: var(--gray-600);
 
-  --text:   var(--mint-50);
-  --text-2: var(--mint-200);
-  --text-3: var(--mint-400);
+  --text:   var(--gray-50);
+  --text-2: var(--gray-300);
+  --text-3: var(--gray-400);
 
   --accent:          var(--mint-200);
-  --accent-strong:   var(--mint-100);
+  --accent-strong:   var(--mint-200);
   --accent-soft:     rgba(158, 189, 180, 0.16);
-  --accent-contrast: var(--mint-800);
-  --focus:           var(--mint-100);
+  --accent-contrast: var(--gray-800);
+  --focus:           var(--mint-200);
 
-  --line: rgba(158, 189, 180, 0.14);
-  --glass: rgba(33, 54, 48, 0.78);
+  --line: rgba(255, 255, 255, 0.1);
+  --glass: rgba(29, 29, 31, 0.78);
 
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.28);
-  --shadow-2: 0 4px 16px -6px rgba(0, 0, 0, 0.4);
-  --shadow-3: 0 22px 48px -26px rgba(0, 0, 0, 0.55);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 4px 16px -8px rgba(0, 0, 0, 0.5);
+  --shadow-3: 0 24px 48px -28px rgba(0, 0, 0, 0.65);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
   /* 深色区块里的照片板同样是浅色 */
@@ -209,10 +264,11 @@
   color: var(--text);
 }
 
-/* 深色主题下，深色区块要略微提亮才能与画布区分开 */
+/* 深色主题下画布已经是纯黑，深色区块要提亮一档才能与画布区分开 */
 [data-theme="dark"] .surface-dark {
-  --bg:      #263E37;
-  --surface: #2C4740;
+  --bg:      var(--gray-800);
+  --bg-sub:  var(--gray-700);
+  --surface: var(--gray-700);
   background-color: var(--bg);
 }
 
